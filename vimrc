@@ -142,6 +142,9 @@ let g:snippets_dir='~/.vim/snippets'
 " Easily find a word
 map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
+" Remove trailing whitespace
+map <Leader>rw :%s/\s\+$//
+
 let g:showmarks_enable=0
 
 "ruby omnicomplete
