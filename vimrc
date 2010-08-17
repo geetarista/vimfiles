@@ -1,38 +1,58 @@
-set nocompatible " no vi compatibility
+" no vi compatibility
+set nocompatible
 
 call pathogen#runtime_append_all_bundles()
 
-filetype plugin indent on " load filetype plugins/indent settings
-syntax on "Syntax highlighting
+" load filetype plugins/indent settings
+filetype plugin indent on
+"Syntax highlighting
+syntax on
 
-" General settings
-set ruler " Show cursor position
-set number " Show line and column numbers
-set novisualbell  " No blinking
-set noerrorbells  " No noise
-set t_vb= " No noise in shell
-set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:< " Symbols when viewing invisibles
-set laststatus=2  " Always show status line
+"" General settings
+" Show cursor position
+set ruler
+" Show line and column numbers
+set number
+" No blinking
+set novisualbell
+" No noise
+set noerrorbells
+" No noise in shell
+set t_vb=
+" Symbols when viewing invisibles
+set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
+" Always show status line
+set laststatus=2
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
-set history=25 "Set how many commands to retain in history
-set showmatch " Show matching brackets.
-set mat=5 " Bracket blinking length (tenths of a second)
-set linebreak " Break lines at whole words only
-set showbreak=… " Visually differentiate a wrapped line from others
+"Set how many commands to retain in history
+set history=25
+" Show matching brackets.
+set showmatch
+" Bracket blinking length (tenths of a second)
+set mat=5
+" Break lines at whole words only
+set linebreak
+" Visually differentiate a wrapped line from others
+set showbreak=…
 set wildignore+=*.swo,*.swp,*.jpg,*.png,*.gif,.git,log/*,vendor/*,tmp/*,script/*
-set cmdheight=2 " Show two lines in the status bar
+" Show two lines in the status bar
+set cmdheight=2
 set iskeyword+=_,$,@,%,#,-
-set lazyredraw " Do not redraw while running macros (faster)
+" Do not redraw while running macros (faster)
+set lazyredraw
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set showcmd
-" set foldmethod=indent " indent-sensitive folding
+" indent-sensitive folding
+" set foldmethod=indent
 " set shell=zsh
 
 " Do not use swapfiles or backup since writebackup is used
 " writebackup is still used, so a copy is always kept in memory
-set nobackup " Do not write backup files to disk
-set noswapfile " Do not use swapfiles (they have trouble with large files)
+" Do not write backup files to disk
+set nobackup
+" Do not use swapfiles (they have trouble with large files)
+set noswapfile
 
 " Omni-completion enhancements (http://vim.wikia.com/wiki/VimTip1386, http://vim.wikia.com/wiki/VimTip1228)
 " set completeopt=longest,menuone
@@ -41,21 +61,30 @@ set noswapfile " Do not use swapfiles (they have trouble with large files)
 " inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 
-" Tabs
-set tabstop=2 " Use 2 spaces for tabs
-set smarttab " Automatic indenting
-set shiftwidth=2 " sets spaces used for indention
-set autoindent " continue indention from previous line
-set expandtab " tab key inserts spaces instead of tabs
-set backspace=2 " start,indent
+"" Tabs
+" Use 2 spaces for tabs
+set tabstop=2
+" Automatic indenting
+set smarttab
+" sets spaces used for indention
+set shiftwidth=2
+" continue indention from previous line
+set autoindent
+" tab key inserts spaces instead of tabs
+set expandtab
+" start,indent
+set backspace=2
 
-" Search
-set hlsearch " Highlighted search
-set incsearch " Highlight search string as you type
-set whichwrap+=<,>,h,l " allow backspace and cursor keys to cross line boundaries
+"" Search
+" Highlighted search
+set hlsearch
+" Highlight search string as you type
+set incsearch
+" allow backspace and cursor keys to cross line boundaries
+set whichwrap+=<,>,h,l
 map <leader><Esc> :noh<CR>
 
-" Typos
+"" Typos
 nmap :W :w
 nmap :Q :q
 nmap :E :e
@@ -64,12 +93,12 @@ nmap :Noh :noh
 
 let mapleader = ","
 
-" fuzzy finder
+"" fuzzy finder
 " gem install fuzzy_file_finder to work
 map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
 
-" Nerdtree
+"" Nerdtree
 let NERDTreeShowHidden=1
 map <leader>n :NERDTree<CR>
 map <leader>d :NERDTreeToggle<CR>
@@ -78,16 +107,19 @@ nmap <leader>i :set list!<CR> " Shortcut to toggle list (i for invisibles)
 
 vmap <C-d> y'>p " Duplicate visual selection
 
-" vimrc
+"" vimrc
 " Fast editing of .vimrc
 map <leader>v :sp ~/.vimrc<CR>
 " Fast reloading of the .vimrc
 map <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-autocmd! bufwritepost vimrc source ~/.vimrc " When .vimrc is edited, reload it
+" When .vimrc is edited, reload it
+autocmd! bufwritepost vimrc sourc ~/.vimrc
 
-" Folds
-au BufWinLeave ?* mkview " save folds on exit
-au BufWinEnter ?* silent loadview " automatically load folds silently
+"" Folds
+" save folds on exit
+au BufWinLeave ?* mview
+" automatically load folds silently
+au BufWinEnter ?* silent loadview
 
 " one-key indentation
 nmap > >>
@@ -98,14 +130,14 @@ nmap n nzz
 nmap N Nzz
 nmap * *Nzz
 
-" Splits
-"" Window
+"" Splits
+" Window
 nmap <leader>sw<left>  :topleft  vnew<CR>
 nmap <leader>sw<right> :botright vnew<CR>
 nmap <leader>sw<up>    :topleft  new<CR>
 nmap <leader>sw<down>  :botright new<CR>
 
-"" Buffer
+" Buffer
 nmap <leader>s<left>  :leftabove  vnew<CR>
 nmap <leader>s<right> :rightbelow vnew<CR>
 nmap <leader>s<up>    :leftabove  new<CR>
@@ -121,8 +153,9 @@ nmap <leader>x :!
 " ctags
 map <leader>e :silent :! ctags --recurse --sort=yes -f .tags; sort tags > .tmptags; mv .tmptags .tags<CR>:exe ":echo 'tags generated'"<CR>
 
-" Spelling/dictionary
-nmap <silent> <leader>s :set spell!<CR> " Toggle spell checking
+"" Spelling/dictionary
+" Toggle spell checking
+nmap <silent> <leader>s :set spell!<CR>
 set dictionary+=/usr/share/dict/words
 
 " Ack function
@@ -131,7 +164,8 @@ map <leader>A :Ack<space>
 " Update help tags
 map <leader>h :call pathogen#helptags()<CR>
 
-compiler ruby " Enable compiler support for ruby
+" Enable compiler support for ruby
+compiler ruby
 
 " NERDCommenter
 let g:NERDSpaceDelims=1
@@ -143,7 +177,7 @@ let g:snippets_dir='~/.vim/snippets'
 map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Remove trailing whitespace
-map <Leader>rw :%s/\s\+$//
+map <silent> <leader>rw :%s/\s\+$//<CR>:noh<CR>:exe ":echo 'whitespace removed'"<CR>
 
 let g:showmarks_enable=0
 
