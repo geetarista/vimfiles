@@ -117,7 +117,7 @@ autocmd! bufwritepost vimrc sourc ~/.vimrc
 
 "" Folds
 " save folds on exit
-au BufWinLeave ?* mview
+au BufWinLeave ?* mkview
 " automatically load folds silently
 au BufWinEnter ?* silent loadview
 
