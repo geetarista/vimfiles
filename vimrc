@@ -117,9 +117,9 @@ autocmd! bufwritepost vimrc sourc ~/.vimrc
 
 "" Folds
 " save folds on exit
-au BufWinLeave ?* mkview
+au BufWinLeave *.* mkview
 " automatically load folds silently
-au BufWinEnter ?* silent loadview
+au BufWinEnter *.* silent loadview
 
 " one-key indentation
 nmap > >>
@@ -151,7 +151,8 @@ map <C-l> <C-W>l
 nmap <leader>x :!
 
 " ctags
-map <leader>e :silent :! ctags --recurse --sort=yes -f .tags; sort tags > .tmptags; mv .tmptags .tags<CR>:exe ":echo 'tags generated'"<CR>
+set tags=.tags
+map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tags generated'"<CR>
 
 "" Spelling/dictionary
 " Toggle spell checking
