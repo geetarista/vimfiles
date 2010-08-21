@@ -103,7 +103,8 @@ let NERDTreeShowHidden=1
 map <leader>n :NERDTree<CR>
 map <leader>d :NERDTreeToggle<CR>
 
-nmap <leader>i :set list!<CR> " Shortcut to toggle list (i for invisibles)
+" Shortcut to toggle list (i for invisibles)
+nmap <leader>i :set list!<CR>
 
 vmap <C-d> y'>p " Duplicate visual selection
 
