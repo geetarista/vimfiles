@@ -181,6 +181,14 @@ map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " Remove trailing whitespace
 map <silent> <leader>rw :%s/\s\+$//<CR>:noh<CR>:exe ":echo 'whitespace removed'"<CR>
 
+" http://vimcasts.org/episodes/bubbling-text/
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
 let g:showmarks_enable=0
 
 "ruby omnicomplete
