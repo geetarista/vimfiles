@@ -1,10 +1,12 @@
 " no vi compatibility
 set nocompatible
 
-call pathogen#runtime_append_all_bundles()
+" setup pathogen
+silent! call pathogen#runtime_append_all_bundles()
 
 " load filetype plugins/indent settings
 filetype plugin indent on
+
 "Syntax highlighting
 syntax on
 
@@ -23,6 +25,8 @@ set t_vb=
 set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " Always show status line
 set laststatus=2
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
@@ -33,16 +37,26 @@ set showmatch
 set mat=5
 " Break lines at whole words only
 set linebreak
+set wrap
 " Visually differentiate a wrapped line from others
 set showbreak=…
 set wildignore+=*.swo,*.swp,*.jpg,*.png,*.gif,.git,log/*,vendor/*,tmp/*,script/*
+" Wildmenu
+set wildmenu
+set wildmode=list:longest
 " Show two lines in the status bar
 set cmdheight=2
 set iskeyword+=_,$,@,%,#,-
 " Do not redraw while running macros (faster)
 set lazyredraw
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" Display incomplete commands
 set showcmd
+" Show which mode you're in
+set showmode
+" multiple buffers
+set hidden
+" terminal title
+set title
 " indent-sensitive folding
 " set foldmethod=indent
 " set shell=zsh
@@ -51,6 +65,7 @@ set showcmd
 " writebackup is still used, so a copy is always kept in memory
 " Do not write backup files to disk
 set nobackup
+set nowritebackup
 " Do not use swapfiles (they have trouble with large files)
 set noswapfile
 
@@ -82,6 +97,10 @@ set hlsearch
 set incsearch
 " allow backspace and cursor keys to cross line boundaries
 set whichwrap+=<,>,h,l
+" case-insensitive
+set ignorecase
+" case-sensitive for expressions
+set smartcase
 map <leader><Esc> :noh<CR>
 
 "" Typos
@@ -200,3 +219,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd BufRead,BufNewFile Gemfile set filetype=Gemfile
 
 au! BufRead,BufNewFile *.json setfiletype json
+
+" Fold settings
+autocmd FileType ruby setlocal foldmethod=syntax
+autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
