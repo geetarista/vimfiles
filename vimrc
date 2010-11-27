@@ -99,9 +99,9 @@ map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
 
 "" Nerdtree
-let NERDTreeShowHidden=1
-map <leader>n :NERDTree<CR>
-map <leader>d :NERDTreeToggle<CR>
+" let NERDTreeShowHidden=1
+" map <leader>n :NERDTree<CR>
+" map <leader>d :NERDTreeToggle<CR>
 
 " Shortcut to toggle list (i for invisibles)
 nmap <leader>i :set list!<CR>
