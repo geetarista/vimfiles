@@ -6,3 +6,4 @@
 vim/view/*
 .tags
 tags
+*.un~

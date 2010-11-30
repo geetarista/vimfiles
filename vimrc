@@ -61,6 +61,11 @@ set title
 " set foldmethod=indent
 " set shell=zsh
 
+" Undo
+set undofile
+
+map <leader>gu :GundoToggle<CR>
+
 " Do not use swapfiles or backup since writebackup is used
 " writebackup is still used, so a copy is always kept in memory
 " Do not write backup files to disk
