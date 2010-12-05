@@ -63,6 +63,7 @@ set title
 
 " Undo
 set undofile
+set undodir=./.undo
 
 map <leader>gu :GundoToggle<CR>
 
@@ -214,6 +215,9 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
 let g:showmarks_enable=0
+
+" coffeescript
+let coffee_compile_on_save = 1
 
 "ruby omnicomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
