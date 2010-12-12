@@ -1,16 +1,14 @@
 " no vi compatibility
 set nocompatible
 
-" setup pathogen
-silent! call pathogen#runtime_append_all_bundles()
+" Syntax highlighting
+syntax on
 
 " load filetype plugins/indent settings
 filetype plugin indent on
 
-"Syntax highlighting
-syntax on
+"""" General settings """"
 
-"" General settings
 " Show cursor position
 set ruler
 " Show line and column numbers
@@ -60,6 +58,12 @@ set title
 " indent-sensitive folding
 " set foldmethod=indent
 " set shell=zsh
+
+" No Ex Mode
+map Q gq
+
+" Number formatting (good for incrementing/decrementing numbers)
+set nrformats=hex
 
 " Undo
 set undofile
@@ -116,16 +120,6 @@ nmap :Noh :noh
 
 let mapleader = ","
 
-"" fuzzy finder
-" gem install fuzzy_file_finder to work
-map <leader>t :FuzzyFinderTextMate<CR>
-map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
-
-"" Nerdtree
-" let NERDTreeShowHidden=1
-" map <leader>n :NERDTree<CR>
-" map <leader>d :NERDTreeToggle<CR>
-
 " Shortcut to toggle list (i for invisibles)
 nmap <leader>i :set list!<CR>
 
@@ -137,7 +131,7 @@ map <leader>v :sp ~/.vimrc<CR>
 " Fast reloading of the .vimrc
 map <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " When .vimrc is edited, reload it
-autocmd! bufwritepost vimrc sourc ~/.vimrc
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 "" Folds
 " save folds on exit
@@ -172,7 +166,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-nmap <leader>x :!
+nmap <leader>x :! 
 
 " ctags
 set tags=.tags
@@ -182,9 +176,6 @@ map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tag
 " Toggle spell checking
 nmap <silent> <leader>s :set spell!<CR>
 set dictionary+=/usr/share/dict/words
-
-" Update help tags
-map <leader>h :call pathogen#helptags()<CR>
 
 " Enable compiler support for ruby
 compiler ruby
@@ -209,9 +200,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-autocmd BufRead,BufNewFile Gemfile set filetype=Gemfile
-
-au! BufRead,BufNewFile *.json setfiletype json
+autocmd BufRead,BufNewFile Gemfile  set filetype=Gemfile
+autocmd BufRead,BufNewFile *.json   set filetype=json
+autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 " Fold settings
 autocmd FileType ruby setlocal foldmethod=syntax
@@ -222,7 +213,6 @@ autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 " Vundle
 set rtp+=~/.vim/vundle/
 call vundle#rc()
-
 map <leader>bs :BundleSearch 
 map <leader>bi :BundleInstall<CR>
 
@@ -260,6 +250,10 @@ Bundle "git://github.com/tpope/vim-fugitive.git"
 
 " FuzzyFinder
 " Bundle "FuzzyFinder"
+"" fuzzy finder
+" gem install fuzzy_file_finder to work
+" map <leader>t :FuzzyFinderTextMate<CR>
+" map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
 
 " Gist
 Bundle "Gist.vim"
@@ -279,6 +273,11 @@ Bundle "git://github.com/robgleeson/vim-markdown-preview.git"
 
 " Matchit
 Bundle "git://github.com/mhz/vim-matchit.git"
+
+" NERDTree
+" let NERDTreeShowHidden=1
+" map <leader>n :NERDTree<CR>
+" map <leader>d :NERDTreeToggle<CR>
 
 " NERDcommenter
 Bundle "git://github.com/scrooloose/nerdcommenter.git"
