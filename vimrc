@@ -205,8 +205,8 @@ autocmd BufRead,BufNewFile *.json   set filetype=json
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 " Fold settings
-autocmd FileType ruby setlocal foldmethod=syntax
-autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+" autocmd FileType ruby setlocal foldmethod=syntax
+" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 """" Plugins """"
 
