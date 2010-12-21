@@ -8,6 +8,7 @@ set encoding=utf-8
 set guioptions=egmrt " Tabs, grey menu items, menu bar, right scrollbar, tearoff menu items
 set guioptions-=T " No toolbar
 set showtabline=2
-set guifont=Menlo\ Regular:h12
+" set guifont=Menlo\ Regular:h12
+set guifont=Meslo\ LG\ L\ DZ:h12
 set fuoptions=maxvert,maxhorz
 set antialias
