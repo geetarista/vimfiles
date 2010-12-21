@@ -67,7 +67,7 @@ set nrformats=hex
 
 " Undo
 set undofile
-set undodir=./.undo
+set undodir=~/.vimundo
 
 " Do not use swapfiles or backup since writebackup is used
 " writebackup is still used, so a copy is always kept in memory
