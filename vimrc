@@ -1,11 +1,16 @@
 " no vi compatibility
 set nocompatible
 
-" Syntax highlighting
-syntax on
+filetype on
+filetype off 
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
 " load filetype plugins/indent settings
 filetype plugin indent on
+
+" Syntax highlighting
+syntax on
 
 """" General settings """"
 
@@ -66,8 +71,8 @@ map Q gq
 set nrformats=hex
 
 " Undo
-set undofile
-set undodir=~/.vimundo
+" set undofile
+" set undodir=~/.vimundo
 
 " Do not use swapfiles or backup since writebackup is used
 " writebackup is still used, so a copy is always kept in memory
@@ -210,69 +215,64 @@ autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 """" Plugins """"
 
-" Vundle
-set rtp+=~/.vim/vundle/
-call vundle#rc()
-map <leader>bs :BundleSearch 
-map <leader>bi :BundleInstall<CR>
-
 " Ack
-Bundle "git://github.com/mileszs/ack.vim.git"
+" Bundle "git://github.com/mileszs/ack.vim.git"
 map <leader>A :Ack<space>
 
 " Align
-Bundle "Align"
+" Bundle "Align"
 
 " Cocoa
-Bundle "cocoa.vim"
+" Bundle "cocoa.vim"
 
 " Coffee-script
-Bundle "git://github.com/kchmck/vim-coffee-script.git"
-let coffee_compile_on_save = 1
+" Bundle "git://github.com/kchmck/vim-coffee-script.git"
+" Compile to .js on save
+" let coffee_compile_on_save = 1
 
 " Command-t
-" Bundle "git://git.wincent.com/command-t.git"
+" " Bundle "git://git.wincent.com/command-t.git"
 
 " Cucumber
-Bundle "cucumber.zip"
+" Bundle "cucumber.zip"
 
 " Eco
-Bundle "git://github.com/jayferd/eco.vim.git"
+" Bundle "git://github.com/jayferd/eco.vim.git"
 
 " Ego
-Bundle "git://github.com/geetarista/ego.vim.git"
+" Bundle "git://github.com/geetarista/ego.vim.git"
 
 " Endwise
-Bundle "endwise.vim"
+" Bundle "endwise.vim"
 
 " Fugitive
-Bundle "git://github.com/tpope/vim-fugitive.git"
+" Bundle "git://github.com/tpope/vim-fugitive.git"
 
 " FuzzyFinder
-" Bundle "FuzzyFinder"
+" " Bundle "FuzzyFinder"
 "" fuzzy finder
 " gem install fuzzy_file_finder to work
 " map <leader>t :FuzzyFinderTextMate<CR>
 " map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
 
 " Gist
-Bundle "Gist.vim"
+" Bundle "Gist.vim"
 
 " Gundo
-Bundle "git://github.com/sjl/gundo.vim.git"
+" Bundle "git://github.com/sjl/gundo.vim.git"
 map <leader>gu :GundoToggle<CR>
 
 " Haml
-Bundle "git://github.com/tpope/vim-haml.git"
+" Bundle "git://github.com/tpope/vim-haml.git"
 
 " Mac classic theme
-Bundle "git://github.com/nelstrom/vim-mac-classic-theme.git"
+" Bundle "git://github.com/nelstrom/vim-mac-classic-theme.git"
 
 " Markdown preview
-Bundle "git://github.com/robgleeson/vim-markdown-preview.git"
+" Bundle "git://github.com/robgleeson/vim-markdown-preview.git"
 
 " Matchit
-Bundle "git://github.com/mhz/vim-matchit.git"
+" Bundle "git://github.com/mhz/vim-matchit.git"
 
 " NERDTree
 " let NERDTreeShowHidden=1
@@ -280,69 +280,69 @@ Bundle "git://github.com/mhz/vim-matchit.git"
 " map <leader>d :NERDTreeToggle<CR>
 
 " NERDcommenter
-Bundle "git://github.com/scrooloose/nerdcommenter.git"
+" Bundle "git://github.com/scrooloose/nerdcommenter.git"
 let g:NERDSpaceDelims=1
 
 " Pastie
-Bundle "pastie.vim"
+" Bundle "pastie.vim"
 
 " Ragtag
-Bundle "ragtag.vim"
+" Bundle "ragtag.vim"
 
 " Rake
-Bundle "git://github.com/tpope/vim-rake.git"
+" Bundle "git://github.com/tpope/vim-rake.git"
 
 " Rails
-Bundle "rails.vim"
+" Bundle "rails.vim"
 
 " Repeat
-Bundle "git://github.com/tpope/vim-repeat.git"
+" Bundle "git://github.com/tpope/vim-repeat.git"
 
 " Relative Number
-Bundle "RltvNmbr.vim"
+" Bundle "RltvNmbr.vim"
 
 " RSpec
-Bundle "git://github.com/taq/vim-rspec.git"
+" Bundle "git://github.com/taq/vim-rspec.git"
 
 " Ruby
-Bundle "git://github.com/vim-ruby/vim-ruby.git"
+" Bundle "git://github.com/vim-ruby/vim-ruby.git"
 
 " SCSS Syntax
-Bundle "git://github.com/cakebaker/scss-syntax.vim.git"
+" Bundle "git://github.com/cakebaker/scss-syntax.vim.git"
 
 " Showmarks
-" Bundle "ShowMarks"
+" " Bundle "ShowMarks"
 " let g:showmarks_enable=0
 
 " Snipmate
-Bundle "git://github.com/msanders/snipmate.vim.git"
-Bundle "git://github.com/scrooloose/snipmate-snippets.git"
+" Bundle "git://github.com/msanders/snipmate.vim.git"
+" Bundle "git://github.com/scrooloose/snipmate-snippets.git"
 let g:snippets_dir='~/.vim/bundle/snipmate-snippets'
 
 " Sparkup
-Bundle "git://github.com/bingaman/vim-sparkup.git"
+" Bundle "git://github.com/bingaman/vim-sparkup.git"
 
 " Specky
-Bundle "git://github.com/vim-scripts/Specky.git"
+" Bundle "git://github.com/vim-scripts/Specky.git"
 
 " Surround
-Bundle "surround.vim"
+" Bundle "surround.vim"
 
 " Syntastic
-Bundle "git://github.com/scrooloose/syntastic.git"
+" Bundle "git://github.com/scrooloose/syntastic.git"
 
 " Taglist
-Bundle "taglist.vim"
+" Bundle "taglist.vim"
 
 " Unimpaired
-Bundle "unimpaired.vim"
+" Bundle "unimpaired.vim"
 
 " Vim Kata
-Bundle "git://github.com/canadaduane/VimKata.git"
+" Bundle "git://github.com/canadaduane/VimKata.git"
 map <leader>vk :VimKata 
 
 " VisIncr
-Bundle "git://github.com/vim-scripts/VisIncr.git"
+" Bundle "git://github.com/vim-scripts/VisIncr.git"
 
 " Yankring
-Bundle "git://github.com/chrismetcalf/vim-yankring.git"
+" Bundle "git://github.com/chrismetcalf/vim-yankring.git"
