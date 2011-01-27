@@ -3,12 +3,13 @@
 let s:rdebug_port = 39767
 let s:debugger_port = 39768
 " hostname() returns something strange in Windows (E98BD9A419BB41D), so set hostname explicitly
-let s:hostname = 'localhost' "hostname()
+let s:hostname = '127.0.0.1' "hostname()
 " ~/.vim for Linux, vimfiles for Windows
 let s:runtime_dir = expand('<sfile>:h:h')
 " File for communicating between intermediate Ruby script ruby_debugger.rb and
 " this plugin
 let s:tmp_file = s:runtime_dir . '/tmp/ruby_debugger'
+let s:logger_file = s:runtime_dir . '/tmp/ruby_debugger_log'
 let s:server_output_file = s:runtime_dir . '/tmp/ruby_debugger_output'
 " Default id for sign of current line
 let s:current_line_sign_id = 120

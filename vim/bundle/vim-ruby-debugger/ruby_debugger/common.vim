@@ -28,6 +28,47 @@ function! s:get_tags(cmd)
 endfunction
 
 
+" Converts command with relative path to absolute path. If given command
+" contains relative path, it will try to use 'which' on it first, and if
+" 'which' returns nothing, it will add current dir path to given command
+function! s:get_escaped_absolute_path(command)
+  " Remove leading and trailing quotes
+  let given_path = a:command
+  let given_path = substitute(given_path, '"', '\"', "g")
+  let given_path = substitute(given_path, "^'", '', "g")
+  let given_path = substitute(given_path, "'$", '', "g")
+  if given_path[0] == '/'
+    let absolute_path = given_path
+  else
+    let parts = split(given_path)
+    let relative_command = remove(parts, 0)
+    let arguments = join(parts)
+    let absolute_command = ""
+    " I don't know Windows analogue for 'which', if you know - feel free to add it here
+    if !(has("win32") || has("win64"))
+      let absolute_command = s:strip(system('which ' . relative_command))
+    endif
+    if empty(absolute_command)
+      let absolute_command = getcwd() . '/' . relative_command
+    endif
+    let absolute_path = "\"'" . absolute_command . "' " . arguments . '"'
+  endif
+  return absolute_path
+endfunction
+
+
+" Return a string without leading and trailing spaces and linebreaks.
+function! s:strip(input_string)
+  return substitute(substitute(a:input_string, "\n", '', 'g'), '(\s*\(.\{-}\)\s*', '\1', 'g')
+endfunction
+
+
+" Shortcut for g:RubyDebugger.logger.debug
+function! s:log_debug(string)
+  call g:RubyDebugger.logger.debug(a:string)
+endfunction
+
+
 " Return match of inner tags without wrap tags. E.g.:
 " <variables><variable name="a" value="b" /></variables> mathes only <variable /> 
 function! s:get_inner_tags(cmd)
@@ -87,10 +128,15 @@ endfunction
 " Send message to debugger. This function should never be used explicitly,
 " only through g:RubyDebugger.send_command function
 function! s:send_message_to_debugger(message)
+  call s:log_debug("Sending a message to ruby_debugger.rb: '" . a:message . "'")
   if g:ruby_debugger_fast_sender
-    call system(s:runtime_dir . "/bin/socket " . s:hostname . " " . s:debugger_port . " \"" . a:message . "\"")
+    call s:log_debug("Trying to use experimental 'fast_sender'")
+    let cmd = s:runtime_dir . "/bin/socket " . s:hostname . " " . s:debugger_port . " \"" . a:message . "\""
+    call s:log_debug("Executing command: " . cmd)
+    call system(cmd)
   else
     if g:ruby_debugger_builtin_sender
+      call s:log_debug("Using Vim built-in Ruby to send message")
 ruby << RUBY
   require 'socket'
   attempts = 0
@@ -135,7 +181,9 @@ RUBY
       let script .= "ensure; "
       let script .=   "a.close if a && !a.closed?; "
       let script .= "end; \""
+      call s:log_debug("Using system-wide Ruby to send message, the command is: " . script)
       let output = system(script)
+      call s:log_debug("Command has returned following output: " . output)
       if output =~ 'can not be opened'
         call g:RubyDebugger.logger.put("Can't send a message to rdebug - port is not opened") 
       endif

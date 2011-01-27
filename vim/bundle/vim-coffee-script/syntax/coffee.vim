@@ -37,7 +37,7 @@ highlight default link coffeeException Exception
 syntax match coffeeOperator /\<\%(instanceof\|typeof\|delete\)\>/
 highlight default link coffeeOperator Operator
 
-syntax match coffeeKeyword /\<\%(new\|in\|of\|by\|and\|or\|not\|is\|isnt\|class\|extends\|super\|own\)\>/
+syntax match coffeeKeyword /\<\%(new\|in\|of\|by\|and\|or\|not\|is\|isnt\|class\|extends\|super\|own\|do\)\>/
 highlight default link coffeeKeyword Keyword
 
 syntax match coffeeBoolean /\<\%(\%(true\|on\|yes\|false\|off\|no\)\)\>/
@@ -88,17 +88,17 @@ highlight default link coffeeNumber Number
 syntax match coffeeFloat /\i\@<![-+]\?\d*\.\@<!\.\d\+\%([eE][+-]\?\d\+\)\?/
 highlight default link coffeeFloat Float
 
-syntax match coffeeAssignSymbols /:\@<!::\@!\|\%(and\|or\|\|&&\|||\|?\|+\|-\|\/\|\*\|%\|<<\|>>\|>>>\|&\||\|\^\)=\@<!==\@!>\@!/ contained
+syntax match coffeeAssignSymbols /:\@<!::\@!\|\%(\%(\s\zs\%(and\|or\)\)\|&&\|||\|?\|+\|-\|\/\|\*\|%\|<<\|>>\|>>>\|&\||\|\^\)\?=\@<!==\@!>\@!/ contained
 highlight default link coffeeAssignSymbols SpecialChar
 
 syntax match coffeeAssignBrackets /\[.\+\]/ contained contains=TOP,coffeeAssign
 
-syntax match coffeeAssign /\%(@\|@\?\I\)\%(\i\|::\|\.\|?\|\[.\+\]\)*\s*\%(and\|or\|\|&&\|||\|?\|+\|-\|\/\|\*\|%\|<<\|>>\|>>>\|&\||\|\^\)=\@<!==\@!>\@!/
+syntax match coffeeAssign /\%(@\|@\?\I\)\%(\i\|::\|\.\|?\|\[.\+\]\)*\s*\%(and\|or\|&&\|||\|?\|+\|-\|\/\|\*\|%\|<<\|>>\|>>>\|&\||\|\^\)\?=\@<!==\@!>\@!/
 \                         contains=@coffeeIdentifier,coffeeAssignSymbols,coffeeAssignBrackets
 
 " Displays an error for reserved words.
 if !exists("coffee_no_reserved_words_error")
-  syntax match coffeeReservedError /\<\%(case\|default\|function\|var\|void\|with\|const\|let\|enum\|export\|import\|native\|__hasProp\|__extends\|__slice\)\>/
+  syntax match coffeeReservedError /\<\%(case\|default\|function\|var\|void\|with\|const\|let\|enum\|export\|import\|native\|__hasProp\|__extends\|__slice\|__bind\|__indexOf\)\>/
   highlight default link coffeeReservedError Error
 endif
 
@@ -145,8 +145,8 @@ syntax cluster coffeeInterpString contains=@coffeeSimpleString,
 \                                           coffeeInterpolation
 
 syntax region coffeeRegExp start=/)\@<!\%(\%((\s*\|=\s\+\)\@<=\/\|\s\zs\/\s\@!\)/
-\                          end=/\/[gimy]\{,4}/ oneline
-\                          contains=@coffeeInterpString
+\                          skip=/\[.*\/.*\]/ end=/\/[gimy]\{,4}/ oneline
+\                          contains=@coffeeSimpleString
 syntax region coffeeHereRegexp start=/\/\/\// end=/\/\/\/[gimy]\{,4}/ contains=@coffeeInterpString,coffeeHereComment fold
 highlight default link coffeeHereRegexp coffeeRegExp
 highlight default link coffeeRegExp String
