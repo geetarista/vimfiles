@@ -45,6 +45,7 @@ git_bundles = [
   # "git://github.com/tsaleh/vim-tcomment.git",
   "git://github.com/tpope/vim-surround.git",
   "git://github.com/scrooloose/syntastic.git",
+  "git://github.com/godlygeek/tabular.git",
   "git://github.com/mexpolk/vim-taglist.git",
   "git://github.com/tpope/vim-unimpaired.git",
   "git://github.com/canadaduane/VimKata.git",
