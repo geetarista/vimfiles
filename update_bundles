@@ -42,7 +42,7 @@ git_bundles = [
   "git://github.com/scrooloose/snipmate-snippets.git",
   "git://github.com/bingaman/vim-sparkup.git",
   "git://github.com/vim-scripts/Specky.git",
-  # "git://github.com/tsaleh/vim-supertab.git",
+  # "git://github.com/ervandew/supertab.git",
   # "git://github.com/tsaleh/vim-tcomment.git",
   "git://github.com/tpope/vim-surround.git",
   "git://github.com/scrooloose/syntastic.git",
