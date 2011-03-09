@@ -2,7 +2,7 @@
 set nocompatible
 
 filetype on
-filetype off 
+filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -18,6 +18,12 @@ syntax on
 set ruler
 " Show line and column numbers
 set number
+" Vertical column
+if exists("&colorcolumn")
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 " No blinking
 set novisualbell
 " No noise
@@ -171,7 +177,17 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-nmap <leader>x :! 
+" bind command-] to shift right
+nmap <D-]> >>
+vmap <D-]> >>
+imap <D-]> <C-O>>>
+
+" bind command-[ to shift left
+nmap <D-[> <<
+vmap <D-[> <<
+imap <D-[> <C-O><<
+
+nmap <leader>x :!
 
 " ctags
 set tags=.tags
@@ -182,6 +198,9 @@ map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tag
 nmap <silent> <leader>s :set spell!<CR>
 set dictionary+=/usr/share/dict/words
 
+" Toggle Fullscreen
+nmap <silent> <leader>f :set invfullscreen <CR>
+
 " Enable compiler support for ruby
 compiler ruby
 
@@ -189,7 +208,7 @@ compiler ruby
 map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Remove trailing whitespace
-map <silent> <leader>rw :%s/\s\+$//<CR>:noh<CR>:exe ":echo 'whitespace removed'"<CR>
+map <silent> <leader>rw :%s/\s\+$//<CR>:let @/=''<CR>:exe ":echo 'whitespace removed'"<CR>
 
 " http://vimcasts.org/episodes/bubbling-text/
 " Bubble single lines
@@ -361,10 +380,11 @@ endfunction
 
 " Vim Kata
 " Bundle "git://github.com/canadaduane/VimKata.git"
-map <leader>vk :VimKata 
+map <leader>vk :VimKata
 
 " VisIncr
 " Bundle "git://github.com/vim-scripts/VisIncr.git"
 
 " Yankring
 " Bundle "git://github.com/chrismetcalf/vim-yankring.git"
+let g:yankring_history_file='.yankring'
