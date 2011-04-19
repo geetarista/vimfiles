@@ -69,6 +69,8 @@ set title
 " indent-sensitive folding
 " set foldmethod=indent
 " set shell=zsh
+" Set magic mode for regex matching
+set magic
 
 " No Ex Mode
 map Q gq
