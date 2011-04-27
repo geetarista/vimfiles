@@ -1,7 +1,7 @@
 " Vim completion for HTML5 data file
 " Language:       HTML5
 " Maintainer:     othree <othree@gmail.com>
-" Last Change:    2011 Feb 1
+" Last Change:    2011 Apr 9
 
 
 " Lang Tag: {{{
@@ -320,7 +320,7 @@ endif
 " }}}
 
 " Ref: http://dev.w3.org/html5/markup/
-" Version: Draft 29 August 2010
+" Version: Draft 05 April 2011
 let phrasing_elements = ['a', 'em', 'strong', 'small', 'mark', 'abbr', 'dfn', 'i', 'b', 'code', 'var', 'samp', 'kbd', 'sup', 'sub', 'q', 'cite', 'span', 'bdo', 'bdi', 'br', 'wbr', 'ins', 'del', 'img', 'embed', 'object', 'iframe', 'map', 'area', 'script', 'noscript', 'ruby', 'video', 'audio', 'input', 'textarea', 'select', 'button', 'label', 'output', 'datalist', 'keygen', 'progress', 'command', 'canvas', 'time', 'meter']
 
 let metadata_elements = ['link', 'style', 'meta', 'script', 'noscript', 'command']
@@ -328,7 +328,9 @@ let metadata_elements = ['link', 'style', 'meta', 'script', 'noscript', 'command
 let flow_elements = phrasing_elements + ['p', 'hr', 'pre', 'ul', 'ol', 'dl', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hgroup', 'address', 'blockquote', 'ins', 'del', 'object', 'map', 'noscript', 'section', 'nav', 'article', 'aside', 'header', 'footer', 'video', 'audio', 'figure', 'table', 'form', 'fieldset', 'menu', 'canvas', 'details']
 
 " http://dev.w3.org/html5/spec/Overview.html#linkTypes
-let linktypes = ['alternate', 'archives', 'author', 'bookmark', 'external', 'first', 'help', 'icon', 'index', 'last', 'license', 'next', 'nofollow', 'noreferrer', 'pingback', 'prefetch', 'prev', 'search', 'stylesheet', 'sidebar', 'tag', 'up']
+let linktypes = ['alternate', 'author', 'bookmark', 'external', 'help', 'icon', 'license', 'next', 'nofollow', 'noreferrer', 'pingback', 'prefetch', 'prev', 'search', 'stylesheet', 'sidebar', 'tag']
+" http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html
+let linkreltypes = linktypes + ['canonical']
 
 " a and button are special elements for interactive, some element can't be its descendent
 let abutton_dec = 'details\\|embed\\|iframe\\|keygen\\|label\\|menu\\|select\\|textarea'
@@ -572,7 +574,7 @@ let g:xmldata_html5 = {
 \ ],
 \ 'link': [
     \ [],
-    \ extend(copy(global_attributes), {'href': [], 'rel': linktypes, 'hreflang': lang_tag, 'media': [], 'type': [], 'sizes': ['any']})
+    \ extend(copy(global_attributes), {'href': [], 'rel': linkreltypes, 'hreflang': lang_tag, 'media': [], 'type': [], 'sizes': ['any']})
 \ ],
 \ 'map': [
     \ flow_elements,

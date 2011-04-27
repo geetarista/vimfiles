@@ -1,16 +1,4 @@
-$a: $b + $c; // issue #4: variables should be displayed with the same color
-
-div {
-  height: 10px;
-}
-
-div {
-  a: 10px;
-}
-
-div {
-  foo: 10px;
-}
+// Nested Rules
 
 #main p {
   color: #00ff00;
@@ -37,6 +25,8 @@ div {
   pre { font-size: 3em; }
 }
 
+// Referencing Parent Selectors: &
+
 a {
   font-weight: bold;
   text-decoration: none;
@@ -51,6 +41,8 @@ a {
     &:hover { color: red; }
   }
 }
+
+// Nested Properties
 
 .funky {
   font: {
@@ -67,6 +59,8 @@ a {
     weight: bold;
   }
 }
+
+// Comments: /* */ and //
 
 /* This comment is
  * several lines long.
@@ -87,17 +81,23 @@ a {
   color: green; // issue #3: a comment ending with {}
 }
 
+// Variables: $
+
 $width: 5em; // another comment
 
 #main {
   width: $width;
 }
 
+// Data Types: Strings
+
 @mixin firefox-message($selector) {
   body.firefox #{$selector}:before {
     content: "Hi, Firefox users!"; } }
 
 @include firefox-message(".header");
+
+// Number Operations
 
 p {
   width: 1in + 8pt;
@@ -117,6 +117,8 @@ p {
   font: #{$font-size}/#{$line-height};
 }
 
+// Color Operations
+
 p {
   color: #010203 + #040506;
 }
@@ -135,6 +137,8 @@ p {
   background-color: transparentize($translucent-red, 50%);
 }
 
+// String Operations
+
 p {
   cursor: e + -resize;
 }
@@ -150,13 +154,25 @@ p {
 p:before {
   content: "I ate #{5 + 10} pies!"; }
 
+// Parentheses
+
 p {
   width: 1em + (2em * 3);
 }
 
+// Functions
+
 p {
   color: hsl(0, 100%, 50%);
 }
+
+// Keyword Arguments
+
+p {
+  color: hsl($hue: 0, $saturation: 100%, $lightness: 50%);
+}
+
+// Interpolation: #{}
 
 $name: foo;
 $attr: border;
@@ -168,6 +184,8 @@ p {
   font: #{$font-size}/#{$line-height};
 }
 
+// Variable Defaults: !default
+
 $content: "First content";
 $content: "Second content?" !default;
 $new_content: "First time reference" !default;
@@ -177,11 +195,48 @@ $new_content: "First time reference" !default;
   new-content: $new_content;
 }
 
+// @import
+
 @import "foo.scss";
 @import "foo";
 
 @import "foo.css";
+@import "foo" screen;
+@import "http://foo.com/bar";
+@import url(foo);
+
+// Partials
+
 @import "colors";
+
+// Nested @import
+
+.example {
+  color: red;
+}
+
+#main {
+  @import "example";
+}
+
+// @media
+
+.sidebar {
+  width: 300px;
+  @media screen and (orientation: landscape) {
+    width: 500px;
+  }
+}
+
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
+    }
+  }
+}
+
+// @extend
 
 .error {
   border: 1px #f00;
@@ -204,11 +259,15 @@ $new_content: "First time reference" !default;
   border-width: 3px;
 }
 
+// Extending Complex Selectors
+
 .hoverlink {@extend a:hover}
 a:hover {text-decoration: underline}
 
 .hoverlink {@extend a:hover}
 .comment a.user:hover {font-weight: bold}
+
+// Multiple Extends
 
 .error {
   border: 1px #f00;
@@ -223,6 +282,8 @@ a:hover {text-decoration: underline}
   @extend .attention;
   border-width: 3px;
 }
+
+// Chaining Extends
 
 .error {
   border: 1px #f00;
@@ -241,6 +302,8 @@ a:hover {text-decoration: underline}
   right: 10%;
 }
 
+// Selector Sequences
+
 #fake-links .link {@extend a}
 
 a {
@@ -248,13 +311,19 @@ a {
   &:hover {text-decoration: underline}
 }
 
+// Merging Selector Sequences
+
 #admin .tabbar a {font-weight: bold}
 #demo .overview .fakelink {@extend a}
 
 #admin .tabbar a {font-weight: bold}
 #admin .overview .fakelink {@extend a}
 
+// @debug
+
 @debug 10em + 12em;
+
+// @warn
 
 @mixin adjust-location($x, $y) {
   @if unitless($x) {
@@ -267,6 +336,8 @@ a {
   }
   position: relative; left: $x; top: $y;
 }
+
+// @if
 
 p {
   @if 1 + 1 == 2 { border: 1px solid; }
@@ -286,15 +357,29 @@ p {
   }
 }
 
+// @for
+
 @for $i from 1 through 3 {
   .item-#{$1} { width: 2em * $i; }
 }
+
+// @each
+
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}
+
+// @while
 
 $i: 6;
 @while $1 > 0 {
   .item-#{$i} { width: 2em * $i; }
   $i: $1 - 2;
 }
+
+// Defining a Mixin: @mixin
 
 @mixin large-text {
   font: {
@@ -316,6 +401,8 @@ $i: 6;
   }
   * html & { height: 1px }
 }
+
+// Including a Mixin: @include
 
 .page-title {
   @include large-text;
@@ -340,6 +427,8 @@ $i: 6;
 @mixin highlighted-background { background-color: #fc0; }
 @mixin header-text { font-size: 20px; }
 
+// Arguments
+
 @mixin sexy-border($color, $width) {
   border: {
     color: $color;
@@ -360,8 +449,43 @@ p { @include sexy-border(blue, 1in); }
 p { @include sexy-border(blue); }
 h1 { @include sexy-border(blue, 2in); }
 
+// Keyword Arguments
+
+p { @include sexy-border($color: blue); }
+h1 { @include sexy-border($color: blue, $width: 2in); }
+
+// Function Directives
+
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+
+
+
+
+// Styles which were not highlighted correctly in the past
+
 // Attribute selectors should get highlighted for parent references.
 input {
     &[type="text"] { } // <-- This should look the same as...
 }
 input[type="text"] { } // <-- this.
+
+$a: $b + $c; // issue #4: variables should be displayed with the same color
+
+div {
+  height: 10px;
+}
+
+div {
+  a: 10px;
+}
+
+div {
+  foo: 10px;
+}

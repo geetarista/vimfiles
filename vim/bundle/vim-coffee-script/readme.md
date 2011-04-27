@@ -7,10 +7,10 @@ supports [almost][todo] all of CoffeeScript's syntax and indentation style.
 [todo]: http://github.com/kchmck/vim-coffee-script/blob/master/todo.md
 [screenshot]: http://i.imgur.com/xbto8.png
 
-### Installing and using
+### Installing and Using
 
-1. Install [pathogen] into `~/.vim/autoload/` and add the following line to your
-   `~/.vimrc`:
+1. Install [tpope's][tpope] [pathogen] into `~/.vim/autoload/` and add the
+   following line to your `~/.vimrc`:
 
         call pathogen#runtime_append_all_bundles()
 
@@ -24,6 +24,7 @@ supports [almost][todo] all of CoffeeScript's syntax and indentation style.
      > to force reloading.
 
 [pathogen]: http://www.vim.org/scripts/script.php?script_id=2332
+[tpope]: http://github.com/tpope/vim-pathogen
 
 2. Create, and change into, the `~/.vim/bundle/` directory:
 
@@ -37,8 +38,8 @@ supports [almost][todo] all of CoffeeScript's syntax and indentation style.
         $ ls
         vim-coffee-script/
 
-Thatʼs it. Pathogen should handle the rest. Opening a file with a `.coffee`
-extension or a `Cakefile` will load all the CoffeeScript stuff.
+That's it. Pathogen should handle the rest. Opening a file with a `.coffee`
+extension or a `Cakefile` will load everything.
 
 ### Updating
 
@@ -52,33 +53,73 @@ extension or a `Cakefile` will load all the CoffeeScript stuff.
 
 Everything will then be brought up to date.
 
+### Compiling a CoffeeScript Snippet
+
+The `CoffeeCompile` command can be used to peek at how the current file or a
+snippet of CoffeeScript would be compiled to JavaScript. Calling `CoffeeCompile`
+without a range compiles the entire file:
+
+  ![CoffeeCompile](http://i.imgur.com/AZAAd.png)
+
+and shows an output like:
+
+  ![Compiled](http://i.imgur.com/5Huj4.png)
+
+Calling `CoffeeCompile` with a range, like in visual mode, compiles the selected
+snippet of CoffeeScript:
+
+  ![CoffeeCompile Snippet](http://i.imgur.com/SKqCc.png)
+
+and shows an output like:
+
+  ![Compiled Snippet](http://i.imgur.com/wkO4f.png)
+
+The command can also be mapped to a visual mode key for convenience:
+
+    vmap KEY :CoffeeCompile<CR>
+
 ### Customizing
 
-#### Compile the current file on write/save
+These customizations can be enabled or disabled by adding the relevant `let`
+statement to your `~/.vimrc`.
 
-If you are using the NodeJS version of CofeeScript, with the `coffee` command 
-in your `$PATH`, you can enable auto-compiling on file write/save like so:
-	
+#### Fold by indentation
+
+Folding is automatically setup as indent-based:
+
+  ![Folding](http://i.imgur.com/Cq9JA.png)
+
+It's disabled by default, but can be enabled with:
+
+    1et coffee_folding = 1
+
+Otherwise, it can be quickly toggled per-file with the `zi` command.
+
+#### Compile the current file on save
+
+To compile the current file at each save, set:
+
     let coffee_compile_on_save = 1
 
-This will compile the CoffeeScript to JavaScript. For example,
-`/Users/brian/ZOMG.coffee` will compile to `/Users/brian/ZOMG.js`.
+This just calls `coffee -c` on the file, so make sure `coffee` is in your
+`$PATH`. Currently, no compiler output or errors are shown.
 
-#### Disable trailing whitespace error highlighting
+#### Disable trailing whitespace error
 
-If having trailing whitespace highlighted as an error is a bit much, the
-following line can be added to your `~/.vimrc` to disable it:
+Trailing whitespace is highlighted as an error by default. This can be disabled
+with:
 
     let coffee_no_trailing_space_error = 1
 
-#### Disable trailing semicolon error highlighting
+#### Disable trailing semicolon error
 
-Likewise for the highlighting of trailing semicolons:
+Trailing semicolons are also considered an error. This can be disabled with:
 
     let coffee_no_trailing_semicolon_error = 1
 
-#### Disable future/reserved words error highlighting
+#### Disable reserved words error
 
-The same for reserved words:
+Reserved words such as `function` and `var` are highlighted an error in contexts
+disallowed by CoffeeScript. This can be disabled with:
 
     let coffee_no_reserved_words_error = 1

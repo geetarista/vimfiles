@@ -11,7 +11,7 @@ git_bundles = [
   "git://github.com/tsaleh/vim-align.git",
   "git://github.com/msanders/cocoa.vim.git",
   "git://github.com/kchmck/vim-coffee-script.git",
-  "git://git.wincent.com/command-t.git",
+  # "git://git.wincent.com/command-t.git",
   "git://github.com/tpope/vim-cucumber.git",
   "git://github.com/jayferd/eco.vim.git",
   "git://github.com/tpope/vim-endwise.git",
@@ -21,6 +21,7 @@ git_bundles = [
   "git://github.com/tpope/vim-haml.git",
   "git://github.com/othree/html5.vim.git",
   "git://github.com/nathanaelkane/vim-indent-guides.git",
+  "git://github.com/digitaltoad/vim-jade.git",
   "git://github.com/pangloss/vim-javascript.git",
   "git://github.com/tpope/vim-markdown.git",
   "git://github.com/robgleeson/vim-markdown-preview.git",
@@ -81,5 +82,5 @@ git_bundles.each do |url|
   FileUtils.rm_rf(File.join(dir, ".git"))
 end
 
-FileUtils.cd('command-t')
-`rvm 1.8.7 && rake make && rvm default`
+# FileUtils.cd('command-t')
+# `rvm 1.8.7 && rake make && rvm default`
