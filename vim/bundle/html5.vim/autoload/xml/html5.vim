@@ -81,6 +81,7 @@ let attributes_value = {
     \ 'autocomplete': ['on/off', ''],
     \ 'autofocus': ['Bool', ''],
     \ 'autoplay': ['Bool', ''],
+    \ 'border': ['1', ''],
     \ 'challenge': ['Text', ''],
     \ 'charset': ['Charset', ''],
     \ 'checked': ['Bool', ''],
@@ -321,7 +322,7 @@ endif
 
 " Ref: http://dev.w3.org/html5/markup/
 " Version: Draft 05 April 2011
-let phrasing_elements = ['a', 'em', 'strong', 'small', 'mark', 'abbr', 'dfn', 'i', 'b', 'code', 'var', 'samp', 'kbd', 'sup', 'sub', 'q', 'cite', 'span', 'bdo', 'bdi', 'br', 'wbr', 'ins', 'del', 'img', 'embed', 'object', 'iframe', 'map', 'area', 'script', 'noscript', 'ruby', 'video', 'audio', 'input', 'textarea', 'select', 'button', 'label', 'output', 'datalist', 'keygen', 'progress', 'command', 'canvas', 'time', 'meter']
+let phrasing_elements = ['a', 'em', 'strong', 'small', 'mark', 'abbr', 'dfn', 'i', 'b', 'u', 'code', 'var', 'samp', 'kbd', 'sup', 'sub', 'q', 'cite', 'span', 'bdo', 'bdi', 'br', 'wbr', 'ins', 'del', 'img', 'embed', 'object', 'iframe', 'map', 'area', 'script', 'noscript', 'ruby', 'video', 'audio', 'input', 'textarea', 'select', 'button', 'label', 'output', 'datalist', 'keygen', 'progress', 'command', 'canvas', 'time', 'meter']
 
 let metadata_elements = ['link', 'style', 'meta', 'script', 'noscript', 'command']
 
@@ -706,7 +707,7 @@ let g:xmldata_html5 = {
 \ ],
 \ 'table': [
     \ ['caption', 'col', 'colgroup', 'thead', 'tfoot', 'tbody', 'tr'],
-    \ extend(copy(global_attributes), {'summary': []})
+    \ extend(copy(global_attributes), {'border': []})
 \ ],
 \ 'tbody': [
     \ ['tr'],
@@ -747,6 +748,10 @@ let g:xmldata_html5 = {
 \ 'track': [
     \ [],
     \ extend(copy(global_attributes), {'kind': ['subtitles', 'captions', 'descriptions', 'chapters', 'metadata'], 'src': [], 'charset': charset, 'srclang': lang_tag, 'label': []})
+\ ],
+\ 'u': [
+    \ phrasing_elements,
+    \ global_attributes
 \ ],
 \ 'ul': [
     \ ['li'],
