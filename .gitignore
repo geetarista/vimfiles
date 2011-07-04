@@ -7,3 +7,5 @@ vim/view/*
 .tags
 tags
 *.un~
+vim/bundle/
+
