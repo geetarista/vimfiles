@@ -265,6 +265,9 @@ Bundle "geetarista/ego.vim"
 " Endwise
 Bundle "tpope/vim-endwise"
 
+" Erlang
+Bundle "oscarh/vimerl"
+
 " Fugitive
 Bundle "tpope/vim-fugitive"
 
