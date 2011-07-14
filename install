@@ -3,6 +3,18 @@
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
 
+# install vundle
+echo "Installing vundle..."
+  if [ -d "vim/bundle/vundle" ]; then
+    cd "vim/bundle/vundle"
+    git pull
+    cd "../.."
+  else
+    git clone http://github.com/gmarik/vundle.git vim/bundle/vundle
+  fi
+echo "Done installing vundle."
+
+# Symlink all of the files in the repo to your home directory.
 for name in *; do
   if [ ! $name == "README.rdoc" -a ! $name == "LICENSE" -a ! $name == "install" -a ! $name == "update_bundles" ]; then
 
@@ -21,11 +33,6 @@ for name in *; do
   fi
 done
 
-# install vundle
-echo "Installing vundle..."
-git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-echo "done"
-
 echo
-echo "Don't forget to run :BundleInstall"
+echo "Don't forget to run :BundleInstall within vim."
 echo
