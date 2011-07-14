@@ -221,10 +221,6 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-autocmd BufRead,BufNewFile Gemfile  set filetype=Gemfile
-autocmd BufRead,BufNewFile *.json   set filetype=json
-autocmd BufRead,BufNewFile *.coffee set filetype=coffee
-
 " Fold settings
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
