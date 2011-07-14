@@ -20,3 +20,12 @@ for name in *; do
     echo "Linked $PWD/$name to $target."
   fi
 done
+
+# install vundle
+echo "Installing vundle..."
+git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+echo "done"
+
+echo
+echo "Don't forget to run :BundleInstall"
+echo
