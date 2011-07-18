@@ -433,8 +433,8 @@ Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "tpope/vim-unimpaired"
 
 " Vim Kata
-Bundle "canadaduane/VimKata"
-map <leader>vk :VimKata
+" Bundle "canadaduane/VimKata"
+" map <leader>vk :VimKata
 
 " VisIncr
 Bundle "vim-scripts/VisIncr"
