@@ -352,7 +352,7 @@ Bundle "taq/vim-rspec"
 Bundle "vim-ruby/vim-ruby"
 
 " Ruby debugger
-Bundle "astashov/vim-ruby-debugger"
+" Bundle "astashov/vim-ruby-debugger"
 
 " SCSS Syntax
 Bundle "cakebaker/scss-syntax.vim"
