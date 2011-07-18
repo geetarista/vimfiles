@@ -209,6 +209,9 @@ map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " Remove trailing whitespace
 map <silent> <leader>rw :%s/\s\+$//<CR>:let @/=''<CR>:exe ":echo 'whitespace removed'"<CR>
 
+" Run Jasmine specs
+map <leader>js :!jasmine-node spec --noColor<CR>
+
 " http://vimcasts.org/episodes/bubbling-text/
 " Bubble single lines
 nmap <C-Up> [e
