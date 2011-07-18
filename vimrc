@@ -117,7 +117,6 @@ set whichwrap+=<,>,h,l
 set ignorecase
 " case-sensitive for expressions
 set smartcase
-map <leader><Esc> :noh<CR>
 
 "" Typos
 nmap :W :w
@@ -127,6 +126,9 @@ nmap :Tabe :tabe
 nmap :Noh :noh
 
 let mapleader = ","
+
+" Easy no-highight
+map <leader><Esc> :noh<CR>
 
 " Shortcut to toggle list (i for invisibles)
 nmap <leader>i :set list!<CR>
