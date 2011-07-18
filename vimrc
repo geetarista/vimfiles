@@ -384,7 +384,7 @@ Bundle "bingaman/vim-sparkup"
 Bundle "vim-scripts/Specky"
 
 " Supertab
-Bundle "ervandew/supertab"
+" Bundle "ervandew/supertab"
 
 " Surround
 Bundle "tpope/vim-surround"
