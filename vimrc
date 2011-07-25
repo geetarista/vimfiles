@@ -240,7 +240,7 @@ map <leader>bi :BundleInstall<CR>
 """ Plugins """"
 
 " Ack
-Bundle "mileszs/ack"
+Bundle "mileszs/ack.vim"
 map <leader>A :Ack<space>
 
 " Align
