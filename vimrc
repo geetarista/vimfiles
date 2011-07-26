@@ -247,7 +247,7 @@ map <leader>A :Ack<space>
 Bundle "tsaleh/vim-align"
 
 " Cocoa
-Bundle "msanders/cocoa.vim"
+" Bundle "msanders/cocoa.vim"
 
 " Coffee-script
 Bundle "kchmck/vim-coffee-script"
@@ -255,7 +255,7 @@ Bundle "kchmck/vim-coffee-script"
 " let coffee_compile_on_save = 1
 
 " Cucumber
-Bundle "tpope/vim-cucumber"
+" Bundle "tpope/vim-cucumber"
 
 " Eco
 Bundle "jayferd/eco.vim"
@@ -280,7 +280,7 @@ Bundle "tpope/vim-fugitive"
 " map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
 
 " Gist
-Bundle "mattn/gist-vim"
+" Bundle "mattn/gist-vim"
 
 " Gundo
 Bundle "sjl/gundo.vim"
@@ -293,7 +293,7 @@ Bundle "tpope/vim-haml"
 Bundle "othree/html5.vim"
 
 " Indent guides
-Bundle "nathanaelkane/vim-indent-guides"
+" Bundle "nathanaelkane/vim-indent-guides"
 
 " Ingretu
 Bundle "gmarik/ingretu"
@@ -314,7 +314,7 @@ Bundle "nelstrom/vim-mac-classic-theme"
 Bundle "tpope/vim-markdown"
 
 " Markdown preview
-Bundle "robgleeson/vim-markdown-preview"
+Bundle "peterhost/vim-markdown-preview"
 
 " Matchit
 Bundle "mhz/vim-matchit"
@@ -348,7 +348,7 @@ Bundle "tpope/vim-rails"
 Bundle "tpope/vim-repeat"
 
 " Relative Number
-Bundle "vim-scripts/RltvNmbr.vim"
+" Bundle "vim-scripts/RltvNmbr.vim"
 
 " RSpec
 Bundle "taq/vim-rspec"
@@ -360,14 +360,14 @@ Bundle "vim-ruby/vim-ruby"
 " Bundle "astashov/vim-ruby-debugger"
 
 " SCSS Syntax
-Bundle "cakebaker/scss-syntax.vim"
+" Bundle "cakebaker/scss-syntax.vim"
 
 " Shoulda
-Bundle "tsaleh/vim-shoulda"
+" Bundle "tsaleh/vim-shoulda"
 
 " Showmarks
-Bundle "harleypig/ShowMarks"
-let g:showmarks_enable=0
+" Bundle "harleypig/ShowMarks"
+" let g:showmarks_enable=0
 
 " Snipmate
 Bundle "git://github.com/msanders/snipmate.vim.git"
@@ -383,10 +383,10 @@ Bundle "jamescarr/snipmate-nodejs"
 Bundle "altercation/vim-colors-solarized"
 
 " Sparkup
-Bundle "bingaman/vim-sparkup"
+" Bundle "bingaman/vim-sparkup"
 
 " Specky
-Bundle "vim-scripts/Specky"
+" Bundle "vim-scripts/Specky"
 
 " Supertab
 " Bundle "ervandew/supertab"
@@ -409,24 +409,24 @@ if exists(":Tabularize")
 endif
 
 " Tcomment
-Bundle "tsaleh/vim-tcomment"
+" Bundle "tsaleh/vim-tcomment"
 
 " https://gist.github.com/287147
 " Especially useful for cucumber steps
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
+" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+" function! s:align()
+"   let p = '^\s*|\s.*\s|\s*$'
+"   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+"     let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+"     let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+"     Tabularize/|/l1
+"     normal! 0
+"     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+"   endif
+" endfunction
 
 " Taglist
-Bundle "mexpolk/vim-taglist"
+Bundle "thisivan/vim-taglist"
 
 " Textobj User
 Bundle "kana/vim-textobj-user"
@@ -442,7 +442,7 @@ Bundle "tpope/vim-unimpaired"
 " map <leader>vk :VimKata
 
 " VisIncr
-Bundle "vim-scripts/VisIncr"
+" Bundle "vim-scripts/VisIncr"
 
 " Yankring
 Bundle "chrismetcalf/vim-yankring"
