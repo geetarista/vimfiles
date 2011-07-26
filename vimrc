@@ -74,7 +74,7 @@ map Q gq
 set nrformats=hex
 
 " Undo
-" set undofile
+set undofile
 " set undodir=~/.vimundo
 
 " Do not use swapfiles or backup since writebackup is used
