@@ -230,6 +230,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
+" Filetypes
+autocmd BufNewFile,BufRead Guardfile set filetype=ruby
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
