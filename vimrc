@@ -376,14 +376,14 @@ Bundle "vim-ruby/vim-ruby"
 " let g:showmarks_enable=0
 
 " Snipmate
-Bundle "git://github.com/msanders/snipmate.vim.git"
-
-" Snipmate snippets
-Bundle "git://github.com/scrooloose/snipmate-snippets.git", { 'rtp': 'vim/' }
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
 let g:snippets_dir='~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs'
 
 " Snipmate node.js
-Bundle "jamescarr/snipmate-nodejs"
+" Bundle "jamescarr/snipmate-nodejs"
 
 " Solarized
 Bundle "altercation/vim-colors-solarized"
