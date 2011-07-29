@@ -44,7 +44,7 @@ set linebreak
 set wrap
 " Visually differentiate a wrapped line from others
 set showbreak=…
-set wildignore+=*.swo,*.swp,*.jpg,*.png,*.gif,.git,log/*,vendor/*,tmp/*,script/*
+set wildignore+=*.swo,*.swp,*.jpg,*.png,*.gif,.git,log/*,vendor/*,tmp/*,script/*,*.un~
 " Wildmenu
 set wildmenu
 set wildmode=list:longest
