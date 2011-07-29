@@ -233,8 +233,6 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " Filetypes
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
 
-source ~/.vim/bundle/vim-peepopen/plugin/peepopen.vim
-
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -339,6 +337,9 @@ map <leader>d :NERDTreeToggle<CR>
 
 " Pastie
 Bundle "tpope/vim-pastie"
+
+" PeepOpen
+Bundle "git://github.com/topfunky/PeepOpen-EditorSupport.git", { 'rtp': 'vim-peepopen' }
 
 " Ragtag
 Bundle "tpope/vim-ragtag"
