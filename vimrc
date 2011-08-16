@@ -233,6 +233,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " Filetypes
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set ft=json
+autocmd BufNewfile,BufRead *.snippets set noexpandtab
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
