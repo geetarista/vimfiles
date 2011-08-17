@@ -16,8 +16,7 @@ echo "Done installing vundle."
 
 # Symlink all of the files in the repo to your home directory.
 for name in *; do
-  if [ ! $name == "README.rdoc" -a ! $name == "LICENSE" -a ! $name == "install" -a ! $name == "update_bundles" ]; then
-
+  if [ ! $name == "README.md" -a ! $name == "LICENSE" -a ! $name == "install" ]; then
     target="$HOME/.$name"
 
     if [ -h $target ]; then
@@ -34,5 +33,6 @@ for name in *; do
 done
 
 echo
-echo "Don't forget to run :BundleInstall within vim."
+echo "Don't forget to run :BundleInstall (<leader>bi) within vim."
 echo
+
