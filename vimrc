@@ -456,3 +456,8 @@ Bundle "tpope/vim-unimpaired"
 Bundle "chrismetcalf/vim-yankring"
 let g:yankring_history_file='.yankring'
 
+" colors (must be after bundles if using a bundled colorscheme)
+set t_Co=256
+" set background=dark
+colorscheme ego
+
