@@ -333,9 +333,9 @@ let g:NERDSpaceDelims=1
 
 " NERDTree
 Bundle "scrooloose/nerdtree"
+let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
-map <leader>n :NERDTree<CR>
-map <leader>d :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " Pastie
 Bundle "tpope/vim-pastie"
