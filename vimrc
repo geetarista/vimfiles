@@ -30,7 +30,6 @@ set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " Always show status line
 set laststatus=2
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
