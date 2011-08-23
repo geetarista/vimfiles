@@ -252,6 +252,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set ft=json
 autocmd BufNewfile,BufRead *.snippets set noexpandtab
+autocmd BufNewfile,BufRead *.pde setf arduino
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -269,6 +270,9 @@ map <leader>a :Ack <C-r><C-w>
 
 " Align
 Bundle "tsaleh/vim-align"
+
+" Arduino
+Bundle "arduino.vim"
 
 " Cocoa
 " Bundle "msanders/cocoa.vim"
