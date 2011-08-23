@@ -107,7 +107,7 @@ set shiftwidth=2
 set autoindent
 " tab key inserts spaces instead of tabs
 set expandtab
-" start,indent
+" indent,eol,start
 set backspace=2
 
 "" Search
