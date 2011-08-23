@@ -283,11 +283,9 @@ Bundle "oscarh/vimerl"
 Bundle "tpope/vim-fugitive"
 
 " FuzzyFinder
-" Bundle "FuzzyFinder"
-"" fuzzy finder
-" gem install fuzzy_file_finder to work
-" map <leader>t :FuzzyFinderTextMate<CR>
-" map <leader>R :FuzzyFinderTextMateRefreshFiles<CR>
+Bundle "vim-scripts/L9"
+Bundle "vim-scripts/FuzzyFinder"
+map <leader>t :FufFile **/<CR>
 
 " Gist
 " Bundle "mattn/gist-vim"
@@ -346,7 +344,7 @@ let g:NERDSpaceDelims=1
 Bundle "tpope/vim-pastie"
 
 " PeepOpen
-Bundle "git://github.com/topfunky/PeepOpen-EditorSupport.git", { 'rtp': 'vim-peepopen' }
+" Bundle "git://github.com/topfunky/PeepOpen-EditorSupport.git", { 'rtp': 'vim-peepopen' }
 
 " Ragtag
 Bundle "tpope/vim-ragtag"
