@@ -65,6 +65,8 @@ set title
 " set shell=zsh
 " Set magic mode for regex matching
 set magic
+" Use the OS X clipboard
+set clipboard=unnamed
 
 " No Ex Mode
 map Q gq
