@@ -70,6 +70,11 @@ set magic
 " No Ex Mode
 map Q gq
 
+" file explorer
+let g:netrw_liststyle=3 " Use tree-mode as default view
+" let g:netrw_browse_split=4 " Open file in previous buffer
+" let g:netrw_preview=1 " preview window shown in a vertically split
+
 " Number formatting (good for incrementing/decrementing numbers)
 set nrformats=hex
 
@@ -332,10 +337,10 @@ Bundle "scrooloose/nerdcommenter"
 let g:NERDSpaceDelims=1
 
 " NERDTree
-Bundle "scrooloose/nerdtree"
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-map <leader>n :NERDTreeToggle<CR>
+" Bundle "scrooloose/nerdtree"
+" let NERDTreeShowFiles=1
+" let NERDTreeShowHidden=1
+" map <leader>n :NERDTreeToggle<CR>
 
 " Pastie
 Bundle "tpope/vim-pastie"
