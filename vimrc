@@ -263,6 +263,7 @@ call vundle#rc()
 " Manage vundle itself
 Bundle 'gmarik/vundle'
 map <leader>bi :BundleInstall<CR>
+map <leader>bc :BundleClean<CR>
 
 """ Plugins """"
 
