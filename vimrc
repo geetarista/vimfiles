@@ -263,6 +263,7 @@ map <leader>bi :BundleInstall<CR>
 " Ack
 Bundle "mileszs/ack.vim"
 map <leader>A :Ack<space>
+map <leader>a :Ack <C-r><C-w>
 
 " Align
 Bundle "tsaleh/vim-align"
