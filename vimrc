@@ -60,8 +60,6 @@ set showmode
 set hidden
 " terminal title
 set title
-" indent-sensitive folding
-" set foldmethod=indent
 " set shell=zsh
 " Set magic mode for regex matching
 set magic
@@ -70,6 +68,20 @@ set clipboard=unnamed
 
 " No Ex Mode
 map Q gq
+
+"" Folds
+" don't fold by default
+set nofoldenable
+" indent-sensitive folding
+" set foldmethod=indent
+" deepest fold level
+" set foldnestmax=2
+" save folds on exit
+au BufWinLeave *.* mkview
+" automatically load folds silently
+au BufWinEnter *.* silent loadview
+" autocmd FileType ruby setlocal foldmethod=syntax
+" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " file explorer
 let g:netrw_liststyle=3 " Use tree-mode as default view
@@ -155,12 +167,6 @@ map <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloade
 " When .vimrc is edited, reload it
 autocmd! bufwritepost vimrc source $MYVIMRC
 
-"" Folds
-" save folds on exit
-au BufWinLeave *.* mkview
-" automatically load folds silently
-au BufWinEnter *.* silent loadview
-
 " one-key indentation
 nmap > >>
 nmap < <<
@@ -241,10 +247,6 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-
-" Fold settings
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " Filetypes
 autocmd BufNewFile,BufRead Guardfile set filetype=ruby
