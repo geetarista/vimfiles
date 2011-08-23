@@ -275,7 +275,7 @@ map <leader>a :Ack <C-r><C-w>
 Bundle "tsaleh/vim-align"
 
 " Arduino
-Bundle "arduino.vim"
+Bundle "Arduino-syntax-file"
 
 " Cocoa
 " Bundle "msanders/cocoa.vim"
