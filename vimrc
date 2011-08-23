@@ -166,6 +166,10 @@ nmap n nzz
 nmap N Nzz
 nmap * *Nzz
 
+" properly move across lines in wrap mode
+nnoremap j gj
+nnoremap k gk
+
 "" Splits
 " Window
 nmap <leader>sw<left>  :topleft  vnew<CR>
