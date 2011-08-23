@@ -140,6 +140,9 @@ nmap <leader>i :set list!<CR>
 
 vmap <C-d> y'>p " Duplicate visual selection
 
+" Easier command mode
+nnoremap ; :
+
 "" vimrc
 " Fast editing of .vimrc
 map <leader>v :sp ~/.vimrc<CR>
