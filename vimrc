@@ -149,11 +149,11 @@ map <leader>q :q<CR>
 
 "" vimrc
 " Fast editing of .vimrc
-map <leader>v :sp ~/.vimrc<CR>
+map <leader>v :sp $MYVIMRC<CR>
 " Fast reloading of the .vimrc
-map <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " When .vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost vimrc source $MYVIMRC
 
 "" Folds
 " save folds on exit
