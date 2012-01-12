@@ -16,4 +16,4 @@ set showtabline=2
 set guifont=Menlo\ Regular:h14
 " set guifont=Meslo\ LG\ L\ DZ:h14
 set linespace=6
-set fuoptions=maxvert,maxhorz
+" set fuoptions=maxvert,maxhorz
