@@ -159,6 +159,8 @@ nnoremap ; :
 
 " Quicker q
 map <leader>q :q<CR>
+" Quicker w
+map <leader>w :w<CR>
 
 "" vimrc
 " Fast editing of .vimrc
@@ -256,6 +258,15 @@ if has("autocmd")
   autocmd BufNewfile,BufRead *.snippets set noexpandtab
   autocmd BufNewfile,BufRead *.pde setf arduino
 end
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
