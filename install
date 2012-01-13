@@ -21,10 +21,10 @@ for name in *; do
 
     if [ -h $target ]; then
       rm $target
-      echo "Deleted $target."
+      echo "Deleted $target"
     elif [ -d $target ]; then
       rm -rf $target
-      echo "Deleted $target."
+      echo "Deleted $target"
     fi
 
     ln -s "$PWD/$name" "$target"
@@ -32,7 +32,8 @@ for name in *; do
   fi
 done
 
-echo
-echo "Don't forget to run :BundleInstall (<leader>bi) within vim."
-echo
+vim -c BundleInstall! -c BundleClean! -c q -c q
 
+echo
+echo "Installed successfully."
+echo

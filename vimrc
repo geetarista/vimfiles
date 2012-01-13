@@ -1,9 +1,6 @@
 " no vi compatibility
 set nocompatible
 
-" load filetype plugins/indent settings
-filetype plugin indent on
-
 " Syntax highlighting
 syntax on
 
@@ -29,7 +26,16 @@ set t_vb=
 set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " Always show status line
 set laststatus=2
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" Status line format
+set statusline=%F " Full path to file
+set statusline+=%m%r%h%w\ 
+set statusline+=%{fugitive#statusline()}\ 
+set statusline+=[FORMAT=%{&ff}]\ 
+set statusline+=[TYPE=%Y]\ 
+set statusline+=[ASCII=\%03.3b]\ 
+set statusline+=[HEX=\%02.2B]\ 
+set statusline+=[POS=%04l,%04v][%p%%]\ 
+set statusline+=[LEN=%L]
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
@@ -213,6 +219,25 @@ imap <D-[> <C-O><<
 
 nmap <leader>x :!
 
+" close buffer
+nmap <leader>d :bd<CR>
+
+" close all buffers
+nmap <leader>D :bufdo bd<CR>
+
+" Switch between last two buffers
+nnoremap <leader><leader> <c-^>
+
+" EXTERNAL COPY / PASTE
+" Press F2 before and after pasting from an external Window, not required for
+" MacVim
+set pastetoggle=<F2>
+map <C-v> "+gP<CR>
+vmap <C-c> "+y
+
+" Git blame
+vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
+
 " ctags
 set tags=.tags
 map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tags generated'"<CR>
@@ -268,6 +293,9 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Vagrantfile,Guardfile,Capfile set ft=ruby
+
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -299,6 +327,9 @@ Bundle "kchmck/vim-coffee-script"
 
 " Cucumber
 " Bundle "tpope/vim-cucumber"
+
+" Desertink
+Bundle "toupeira/vim-desertink"
 
 " Eco
 Bundle "jayferd/eco.vim"
@@ -363,6 +394,9 @@ Bundle "mhz/vim-matchit"
 " Molokai
 Bundle "lukerandall/molokai"
 
+" Monokai
+Bundle "sickill/vim-monokai"
+
 " NERDcommenter
 Bundle "scrooloose/nerdcommenter"
 let g:NERDSpaceDelims=1
@@ -403,6 +437,9 @@ Bundle "vim-ruby/vim-ruby"
 " Ruby debugger
 " Bundle "astashov/vim-ruby-debugger"
 
+" Ruby Refactor
+Bundle "ecomba/vim-ruby-refactoring"
+
 " SCSS Syntax
 " Bundle "cakebaker/scss-syntax.vim"
 
@@ -432,6 +469,9 @@ Bundle "altercation/vim-colors-solarized"
 " Specky
 " Bundle "vim-scripts/Specky"
 
+" Sunburst
+Bundle "sickill/vim-sunburst"
+
 " Supertab
 " Bundle "ervandew/supertab"
 
@@ -454,6 +494,8 @@ endif
 
 " Tcomment
 " Bundle "tsaleh/vim-tcomment"
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
 
 " https://gist.github.com/287147
 " Especially useful for cucumber steps
@@ -485,6 +527,9 @@ Bundle "tpope/vim-unimpaired"
 " Bundle "canadaduane/VimKata"
 " map <leader>vk :VimKata
 
+" Vimroom
+Bundle "mikewest/vimroom"
+
 " VisIncr
 " Bundle "vim-scripts/VisIncr"
 
@@ -496,4 +541,7 @@ let g:yankring_history_file='.yankring'
 set t_Co=256
 " set background=dark
 colorscheme ego
+
+" load filetype plugins/indent settings
+filetype plugin indent on
 
