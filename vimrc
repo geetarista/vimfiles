@@ -28,13 +28,13 @@ set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 set laststatus=2
 " Status line format
 set statusline=%F " Full path to file
-set statusline+=%m%r%h%w\ 
-set statusline+=%{fugitive#statusline()}\ 
-set statusline+=[FORMAT=%{&ff}]\ 
-set statusline+=[TYPE=%Y]\ 
-set statusline+=[ASCII=\%03.3b]\ 
-set statusline+=[HEX=\%02.2B]\ 
-set statusline+=[POS=%04l,%04v][%p%%]\ 
+set statusline+=%m%r%h%w\
+set statusline+=%{fugitive#statusline()}\
+set statusline+=[FORMAT=%{&ff}]\
+set statusline+=[TYPE=%Y]\
+set statusline+=[ASCII=\%03.3b]\
+set statusline+=[HEX=\%02.2B]\
+set statusline+=[POS=%04l,%04v][%p%%]\
 set statusline+=[LEN=%L]
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
