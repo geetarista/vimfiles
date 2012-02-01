@@ -49,10 +49,18 @@ set linebreak
 set wrap
 " Visually differentiate a wrapped line from others
 set showbreak=…
-set wildignore+=*.swo,*.swp,*.jpg,*.png,*.gif,.git,log/*,vendor/*,tmp/*,script/*,*.un~
+
 " Wildmenu
-set wildmenu
-set wildmode=list:longest
+if has("wildmenu")
+  set wildmenu
+  set wildmode=list:longest
+  set wildignore+=*.a,*.o
+  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+  set wildignore+=.DS_Store,.git,.hg,.svn
+  set wildignore+=*~,*.swp,*.tmp,*.un~
+  set wildignore+=log/*,vendor/*,tmp/*,script/*
+endif
+
 " Show two lines in the status bar
 set cmdheight=2
 set iskeyword+=_,$,@,%,#,-
