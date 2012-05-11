@@ -26,16 +26,6 @@ set t_vb=
 set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " Always show status line
 set laststatus=2
-" Status line format
-set statusline=%F " Full path to file
-set statusline+=%m%r%h%w\
-set statusline+=%{fugitive#statusline()}\
-set statusline+=[FORMAT=%{&ff}]\
-set statusline+=[TYPE=%Y]\
-set statusline+=[ASCII=\%03.3b]\
-set statusline+=[HEX=\%02.2B]\
-set statusline+=[POS=%04l,%04v][%p%%]\
-set statusline+=[LEN=%L]
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
@@ -49,6 +39,7 @@ set linebreak
 set wrap
 " Visually differentiate a wrapped line from others
 set showbreak=…
+set encoding=utf-8 " Necessary to show unicode glyphs
 
 " Wildmenu
 if has("wildmenu")
@@ -58,7 +49,7 @@ if has("wildmenu")
   set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
-  set wildignore+=log/*,vendor/*,tmp/*,script/*
+  set wildignore+=log/*,tmp/*,script/*
 endif
 
 " Show two lines in the status bar
@@ -98,8 +89,8 @@ au BufWinEnter *.* silent loadview
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " file explorer
-let g:netrw_liststyle=3 " Use tree-mode as default view
-let g:netrw_list_hide='\.un~'
+" let g:netrw_liststyle=3 " Use tree-mode as default view
+" let g:netrw_list_hide='\.un~'
 " let g:netrw_browse_split=4 " Open file in previous buffer
 " let g:netrw_preview=1 " preview window shown in a vertically split
 
@@ -180,9 +171,16 @@ map <leader>w :w<CR>
 " Fast editing of .vimrc
 map <leader>v :sp $MYVIMRC<CR>
 " Fast reloading of the .vimrc
-map <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>sv :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " When .vimrc is edited, reload it
 autocmd! bufwritepost vimrc source $MYVIMRC
+
+" Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>ee
+map <Leader>ee :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Opens a tab edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>t
+map <Leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " one-key indentation
 nmap > >>
@@ -227,6 +225,13 @@ imap <D-[> <C-O><<
 
 nmap <leader>x :!
 
+noremap <silent> <C-h> :bprev<CR>
+noremap <silent> <C-l> :bnext<CR>
+" Closes the current buffer
+nnoremap <silent> <Leader>q :Bclose<CR>
+" Closes the current window
+nnoremap <silent> <Leader>Q <C-w>c
+
 " close buffer
 nmap <leader>d :bd<CR>
 
@@ -236,12 +241,31 @@ nmap <leader>D :bufdo bd<CR>
 " Switch between last two buffers
 nnoremap <leader><leader> <c-^>
 
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>l <C-w>l
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>wo <C-w>o
+nnoremap <Leader>wv <C-w>v<C-w>l
+nnoremap <Leader>ws <C-w>s
+nnoremap <Leader>ww <C-w><C-w>
+
 " EXTERNAL COPY / PASTE
 " Press F2 before and after pasting from an external Window, not required for
 " MacVim
 set pastetoggle=<F2>
-map <C-v> "+gP<CR>
-vmap <C-c> "+y
+map <D-v> "+gP<CR>
+vmap <D-c> "+y
 
 " Git blame
 vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
@@ -278,6 +302,39 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+" Center screen
+" https://gist.github.com/1552327
+let g:centerinscreen_active = 0
+
+function! ToggleCenterInScreen(desired_width)
+    if g:centerinscreen_active == 0
+        let l:window_width = winwidth(winnr())
+        let l:sidepanel_width = (l:window_width - a:desired_width) / 2
+
+        exec("silent leftabove " . l:sidepanel_width . "vsplit new")
+        wincmd l
+        exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
+        wincmd h
+        let g:centerinscreen_active = 1
+    else
+        wincmd h
+        close
+        wincmd l
+        close
+        
+        let g:centerinscreen_active = 0
+    endif
+endfunction
+
+nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
+
+" Four-finger swipe to switch buffers
+if has("gui_macvim")
+  map <SwipeLeft> :bprev<CR>
+  map <SwipeRight> :bnext<CR>
+endif
+
+
 "ruby omnicomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -303,253 +360,5 @@ endfunc
 
 au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Vagrantfile,Guardfile,Capfile set ft=ruby
 
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Manage vundle itself
-Bundle 'gmarik/vundle'
-map <leader>bi :BundleInstall<CR>
-map <leader>bc :BundleClean<CR>
-
-""" Plugins """"
-
-" Ack
-Bundle "mileszs/ack.vim"
-map <leader>A :Ack<space>
-map <leader>a :Ack <C-r><C-w>
-
-" Align
-Bundle "tsaleh/vim-align"
-
-" Arduino
-Bundle "Arduino-syntax-file"
-
-" Cocoa
-" Bundle "msanders/cocoa.vim"
-
-" Coffee-script
-Bundle "kchmck/vim-coffee-script"
-" Compile to .js on save
-" let coffee_compile_on_save = 1
-
-" Cucumber
-" Bundle "tpope/vim-cucumber"
-
-" Desertink
-Bundle "toupeira/vim-desertink"
-
-" Eco
-Bundle "jayferd/eco.vim"
-
-" Ego
-Bundle "geetarista/ego.vim"
-
-" Endwise
-Bundle "tpope/vim-endwise"
-
-" Erlang
-Bundle "oscarh/vimerl"
-
-" Fugitive
-Bundle "tpope/vim-fugitive"
-
-" FuzzyFinder
-Bundle "vim-scripts/L9"
-Bundle "vim-scripts/FuzzyFinder"
-map <leader>t :FufFile **/<CR>
-
-" Gist
-" Bundle "mattn/gist-vim"
-
-" Gundo
-Bundle "sjl/gundo.vim"
-map <leader>gu :GundoToggle<CR>
-
-" Haml
-Bundle "tpope/vim-haml"
-
-" HTML5
-Bundle "othree/html5.vim"
-
-" Indent guides
-" Bundle "nathanaelkane/vim-indent-guides"
-
-" Ingretu
-Bundle "gmarik/ingretu"
-
-" Jade
-Bundle "digitaltoad/vim-jade"
-
-" Javascript
-Bundle "pangloss/vim-javascript"
-
-" Jellybeans
-Bundle "nanotech/jellybeans.vim"
-
-" Mac classic theme
-Bundle "nelstrom/vim-mac-classic-theme"
-
-" Markdown
-Bundle "tpope/vim-markdown"
-
-" Markdown preview
-Bundle "peterhost/vim-markdown-preview"
-
-" Matchit
-Bundle "mhz/vim-matchit"
-
-" Molokai
-Bundle "lukerandall/molokai"
-
-" Monokai
-Bundle "sickill/vim-monokai"
-
-" NERDcommenter
-Bundle "scrooloose/nerdcommenter"
-let g:NERDSpaceDelims=1
-
-" NERDTree
-" Bundle "scrooloose/nerdtree"
-" let NERDTreeShowFiles=1
-" let NERDTreeShowHidden=1
-" map <leader>n :NERDTreeToggle<CR>
-
-" Pastie
-Bundle "tpope/vim-pastie"
-
-" PeepOpen
-" Bundle "git://github.com/topfunky/PeepOpen-EditorSupport.git", { 'rtp': 'vim-peepopen' }
-
-" Ragtag
-Bundle "tpope/vim-ragtag"
-
-" Rake
-Bundle "tpope/vim-rake"
-
-" Rails
-Bundle "tpope/vim-rails"
-
-" Repeat
-Bundle "tpope/vim-repeat"
-
-" Relative Number
-" Bundle "vim-scripts/RltvNmbr.vim"
-
-" RSpec
-Bundle "taq/vim-rspec"
-
-" Ruby
-Bundle "vim-ruby/vim-ruby"
-
-" Ruby debugger
-" Bundle "astashov/vim-ruby-debugger"
-
-" Ruby Refactor
-Bundle "ecomba/vim-ruby-refactoring"
-
-" SCSS Syntax
-" Bundle "cakebaker/scss-syntax.vim"
-
-" Shoulda
-" Bundle "tsaleh/vim-shoulda"
-
-" Showmarks
-" Bundle "harleypig/ShowMarks"
-" let g:showmarks_enable=0
-
-" Snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
-Bundle "garbas/vim-snipmate"
-let g:snippets_dir='~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs'
-
-" Snipmate node.js
-" Bundle "jamescarr/snipmate-nodejs"
-
-" Solarized
-Bundle "altercation/vim-colors-solarized"
-
-" Sparkup
-" Bundle "bingaman/vim-sparkup"
-
-" Specky
-" Bundle "vim-scripts/Specky"
-
-" Sunburst
-Bundle "sickill/vim-sunburst"
-
-" Supertab
-" Bundle "ervandew/supertab"
-
-" Surround
-Bundle "tpope/vim-surround"
-
-" Syntastic
-Bundle "scrooloose/syntastic"
-
-" Tabular
-Bundle "godlygeek/tabular"
-
-" Tabularize
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
-
-" Tcomment
-" Bundle "tsaleh/vim-tcomment"
-nnoremap // :TComment<CR>
-vnoremap // :TComment<CR>
-
-" https://gist.github.com/287147
-" Especially useful for cucumber steps
-" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-" function! s:align()
-"   let p = '^\s*|\s.*\s|\s*$'
-"   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-"     let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-"     let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-"     Tabularize/|/l1
-"     normal! 0
-"     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-"   endif
-" endfunction
-
-" Taglist
-Bundle "thisivan/vim-taglist"
-
-" Textobj User
-Bundle "kana/vim-textobj-user"
-
-" Textobj Ruby block
-Bundle "nelstrom/vim-textobj-rubyblock"
-
-" Unimpaired
-Bundle "tpope/vim-unimpaired"
-
-" Vim Kata
-" Bundle "canadaduane/VimKata"
-" map <leader>vk :VimKata
-
-" Vimroom
-Bundle "mikewest/vimroom"
-
-" VisIncr
-" Bundle "vim-scripts/VisIncr"
-
-" Yankring
-Bundle "chrismetcalf/vim-yankring"
-let g:yankring_history_file='.yankring'
-
-" colors (must be after bundles if using a bundled colorscheme)
-set t_Co=256
-" set background=dark
-colorscheme ego
-
-" load filetype plugins/indent settings
-filetype plugin indent on
-
+" All plugin/bundle management is separate
+source $HOME/.vimrc.bundles
