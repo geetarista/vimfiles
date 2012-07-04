@@ -46,7 +46,19 @@ Bundle "kchmck/vim-coffee-script"
 " ctrlp
 Bundle "kien/ctrlp.vim"
 let g:ctrlp_map = '<leader>t'
+let g:ctrlp_max_files = 10000
+let g:ctrlp_working_path_mode = 2
 nmap <leader>b :CtrlPBuffer<CR>
+" https://gist.github.com/ee14d6ecb9196a07da56
+" if has("unix")
+"   let g:ctrlp_user_command = {
+"     \   'types': {
+"     \       1: ['.git/', 'cd %s && git ls-files'],
+"     \       2: ['.git/modules/vendor/mighty', 'cd %s && git ls-files']
+"     \   },
+"     \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+"     \ }
+" endif
 
 " Cucumber
 " Bundle "tpope/vim-cucumber"
