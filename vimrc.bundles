@@ -87,8 +87,8 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>
 nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gm :Gmove 
-nnoremap <Leader>gg :Ggrep 
+nnoremap <Leader>gm :Gmove
+nnoremap <Leader>gg :Ggrep
 nnoremap <Leader>gd :Gdiff<CR>
 
 " FuzzyFinder
@@ -156,10 +156,10 @@ Bundle "sickill/vim-monokai"
 " let g:NERDSpaceDelims=1
 
 " NERDTree
-Bundle "scrooloose/nerdtree"
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-map <leader>n :NERDTreeToggle<CR>
+" Bundle "scrooloose/nerdtree"
+" let NERDTreeShowFiles=1
+" let NERDTreeShowHidden=1
+" map <leader>n :NERDTreeToggle<CR>
 
 " Node dict
 Bundle "guileen/vim-node"
@@ -203,9 +203,9 @@ Bundle "ecomba/vim-ruby-refactoring"
 
 " Session
 Bundle "xolox/vim-session"
-map <Leader>os :OpenSession 
-map <Leader>so :OpenSession 
-map <Leader>ss :SaveSession 
+map <Leader>os :OpenSession
+map <Leader>so :OpenSession
+map <Leader>ss :SaveSession
 let g:session_autosave = 'no'
 
 " Shoulda
