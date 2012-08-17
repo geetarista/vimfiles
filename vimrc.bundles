@@ -298,6 +298,9 @@ Bundle "tpope/vim-unimpaired"
 " VisIncr
 " Bundle "vim-scripts/VisIncr"
 
+" vividchalk
+Bundle "tpope/vim-vividchalk"
+
 " Yankring
 " Bundle "chrismetcalf/vim-yankring"
 " let g:yankring_history_file='.yankring'
