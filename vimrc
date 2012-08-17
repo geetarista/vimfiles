@@ -328,7 +328,7 @@ endfunction
 
 nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
 
-" Four-finger swipe to switch buffers
+" Three-finger swipe to switch buffers
 if has("gui_macvim")
   map <SwipeLeft> :bprev<CR>
   map <SwipeRight> :bnext<CR>
