@@ -147,6 +147,9 @@ Bundle "peterhost/vim-markdown-preview"
 " Matchtag
 " Bundle "MatchTag"
 
+" Minitest
+Bundle "sunaku/vim-ruby-minitest"
+
 " Molokai
 Bundle "lukerandall/molokai"
 
