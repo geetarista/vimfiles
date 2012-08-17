@@ -49,7 +49,7 @@ if has("wildmenu")
   set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
-  set wildignore+=log/*,tmp/*,script/*
+  set wildignore+=log/*,tmp/*,script/*,vendor/bundle/*,vendor/plugins/*
 endif
 
 " Show two lines in the status bar
