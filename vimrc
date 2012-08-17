@@ -76,15 +76,17 @@ map Q gq
 
 "" Folds
 " don't fold by default
-set nofoldenable
+" set nofoldenable
 " indent-sensitive folding
-" set foldmethod=indent
+set foldmethod=syntax
 " deepest fold level
 " set foldnestmax=2
+" Don't auto fold when a buffer is opened
+set foldlevelstart=99
 " save folds on exit
-au BufWinLeave *.* mkview
+" au BufWinLeave *.* mkview
 " automatically load folds silently
-au BufWinEnter *.* silent loadview
+" au BufWinEnter *.* silent loadview
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
