@@ -6,8 +6,8 @@ if has("gui_macvim")
   set guioptions-=r                   " Hide right scrollbar.
 endif
 
-set lines=60
-set columns=200
+set lines=68
+set columns=176
 " Leaving out for now since it must be called at the end of vimrc for vundle
 " colorscheme ego
 " if &background == "dark"
