@@ -49,6 +49,7 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 2
 nmap <leader>bu :CtrlPBuffer<CR>
+nmap <leader>bt :CtrlPBufTag<CR>
 " https://gist.github.com/ee14d6ecb9196a07da56
 if has("unix")
   let g:ctrlp_user_command = {
