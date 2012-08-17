@@ -318,7 +318,7 @@ Bundle "mattn/zencoding-vim"
 " colors (must be after bundles if using a bundled colorscheme)
 set t_Co=256
 " set background=dark
-colorscheme ego
+colorscheme ir_black " ego
 
 " load filetype plugins/indent settings
 filetype plugin indent on
