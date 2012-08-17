@@ -322,3 +322,6 @@ colorscheme ego
 
 " load filetype plugins/indent settings
 filetype plugin indent on
+
+" Set the color column in case it isn't set
+highlight ColorColumn guibg=#3D4646 ctermbg=238
