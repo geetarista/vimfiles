@@ -105,6 +105,9 @@ map <leader>gu :GundoToggle<CR>
 " Haml
 Bundle "tpope/vim-haml"
 
+" Hemisu
+Bundle "noahfrederick/Hemisu"
+
 " HTML5
 Bundle "othree/html5.vim"
 
