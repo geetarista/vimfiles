@@ -99,9 +99,9 @@ set foldlevelstart=99
 " Number formatting (good for incrementing/decrementing numbers)
 set nrformats=hex
 
-" Undo
+" Persistent Undo
+set undodir=.undodir
 set undofile
-set undodir=~/.vimundo
 
 " Do not use swapfiles or backup since writebackup is used
 " writebackup is still used, so a copy is always kept in memory
