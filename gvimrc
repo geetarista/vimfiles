@@ -15,7 +15,7 @@ set columns=176
 " endif
 set showtabline=2
 
-set guifont=Meslo\ LG\ M\ DZ:h14
+set guifont=Meslo\ LG\ L\ DZ\ Bold:h13
 
 " These two go together if Meslo is not preferred
 " set guifont=Menlo\ Regular:h14
