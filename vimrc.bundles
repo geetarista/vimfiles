@@ -66,6 +66,9 @@ endif
 " Desertink
 Bundle "toupeira/vim-desertink"
 
+" EasyGrep
+Bundle "EasyGrep"
+
 " Easymotion
 Bundle "Lokaltog/vim-easymotion"
 
@@ -75,11 +78,14 @@ Bundle "jayferd/eco.vim"
 " Ego
 Bundle "geetarista/ego.vim"
 
+" Elixir
+Bundle "elixir-lang/vim-elixir"
+
 " Endwise
 Bundle "tpope/vim-endwise"
 
 " Erlang
-Bundle "oscarh/vimerl"
+Bundle "jimenezrick/vimerl"
 
 " Fugitive
 Bundle "tpope/vim-fugitive"
@@ -98,6 +104,12 @@ Bundle "vim-scripts/FuzzyFinder"
 
 " Gist
 " Bundle "mattn/gist-vim"
+
+" gitv
+Bundle "gregsexton/gitv"
+
+" Go
+Bundle "jnwhiteh/vim-golang"
 
 " Gundo
 Bundle "sjl/gundo.vim"
@@ -293,6 +305,9 @@ Bundle "kana/vim-textobj-user"
 " Textobj Ruby block
 Bundle "nelstrom/vim-textobj-rubyblock"
 
+" Tomorrow Theme
+Bundle "chriskempson/tomorrow-theme", { 'rtp': 'vim/' }
+
 " Unimpaired
 Bundle "tpope/vim-unimpaired"
 
@@ -319,7 +334,7 @@ Bundle "mattn/zencoding-vim"
 " colors (must be after bundles if using a bundled colorscheme)
 set t_Co=256
 " set background=dark
-colorscheme ir_black " ego
+colorscheme Tomorrow-Night-Bright " ego
 
 " load filetype plugins/indent settings
 filetype plugin indent on
