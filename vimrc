@@ -336,6 +336,14 @@ if has("gui_macvim")
   map <SwipeRight> :bnext<CR>
 endif
 
+" Python specific
+autocmd FileType python set shiftwidth=4 tabstop=4
+
+" Erlang specific
+autocmd FileType erlang set shiftwidth=4 tabstop=4
+
+" Go specific
+autocmd FileType go set shiftwidth=4 tabstop=4
 
 "ruby omnicomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
