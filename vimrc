@@ -1,10 +1,16 @@
 " no vi compatibility
 set nocompatible
 
+" All plugin/bundle management is separate
+if filereadable(expand('~/.vimrc.bundles'))
+  source $HOME/.vimrc.bundles
+endif
+
 " Syntax highlighting
 syntax on
 
-"""" General settings """"
+" load filetype plugins/indent settings
+filetype plugin indent on
 
 " Show cursor position
 set ruler
@@ -38,18 +44,19 @@ set mat=5
 set linebreak
 set wrap
 " Visually differentiate a wrapped line from others
-set showbreak=…
+set showbreak=↪ " …
 set encoding=utf-8 " Necessary to show unicode glyphs
 
 " Wildmenu
 if has("wildmenu")
   set wildmenu
-  set wildmode=list:longest
-  set wildignore+=*.a,*.o
-  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+  set wildmode=list:longest,list:full
+  set wildignore+=*.a,*.o,*.pyc,*.rbc
+  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.psd
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
   set wildignore+=log/*,tmp/*,script/*,vendor/bundle/*,vendor/plugins/*
+  set wildignore+=node_modules
 endif
 
 " Show two lines in the status bar
@@ -64,25 +71,45 @@ set showmode
 " multiple buffers
 set hidden
 " terminal title
-set title
+set title " titlestring=%t
 " set shell=zsh
 " Set magic mode for regex matching
 set magic
 " Use the OS X clipboard
 set clipboard=unnamed
 
+" Add buffer to cursor while scrolling
+set scrolloff=3
+set sidescroll=1
+set sidescrolloff=3
+
+" Try not letting the cursor blink
+set guicursor+=a:blinkon0
+
 " No Ex Mode
 map Q gq
+
+" Disable arrow keys
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
+
+noremap <F1> <ESC>
 
 "" Folds
 " don't fold by default
 " set nofoldenable
 " indent-sensitive folding
-set foldmethod=syntax
+" set foldmethod=syntax
+" Level of indentation
+" set foldleve=1
 " deepest fold level
 " set foldnestmax=2
 " Don't auto fold when a buffer is opened
-set foldlevelstart=99
+" set foldlevelstart=99
+" Show fold level in the column
+" set foldcolumn=2
 " save folds on exit
 " au BufWinLeave *.* mkview
 " automatically load folds silently
@@ -143,6 +170,10 @@ set whichwrap+=<,>,h,l
 set ignorecase
 " case-sensitive for expressions
 set smartcase
+" search next/previous -- center in page (similar to using 'set scroloff=999')
+nmap n nzz
+nmap N Nzz
+nmap * *Nzz
 
 "" Typos
 nmap :W :w
@@ -154,7 +185,7 @@ nmap :Noh :noh
 let mapleader = ","
 
 " Easy no-highight
-map <leader><Esc> :noh<CR>
+map <silent> <leader><Esc> :noh<CR>
 
 " Shortcut to toggle list (i for invisibles)
 nmap <leader>i :set list!<CR>
@@ -171,12 +202,24 @@ map <leader>w :w<CR>
 
 "" vimrc
 " Fast editing of .vimrc
-map <leader>v :sp $MYVIMRC<CR>
+map <leader>v :vsplit ~/.vimrc<CR><C-W>
 " Fast reloading of the .vimrc
-map <leader>sv :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-" When .vimrc is edited, reload it
-autocmd! bufwritepost vimrc source $MYVIMRC
+map <silent> <Leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vimrc reloaded'<CR>
+" When vimrc is edited, reload it
+" if has("autocmd")
+"   autocmd bufwritepost vimrc source $MYVIMRC
+" endif
 
+" Write all buffers when losing focus
+au FocusLost * :wa
+
+" Auto resize splits
+autocmd VimResized * wincmd =
+
+" nmap + :res +10
+" nmap - :res -10
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 " Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>ee
 map <Leader>ee :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -187,11 +230,6 @@ map <Leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " one-key indentation
 nmap > >>
 nmap < <<
-
-" search next/previous -- center in page (similar to using 'set scroloff=999')
-nmap n nzz
-nmap N Nzz
-nmap * *Nzz
 
 " properly move across lines in wrap mode
 nnoremap j gj
@@ -210,10 +248,10 @@ nmap <leader>s<right> :rightbelow vnew<CR>
 nmap <leader>s<up>    :leftabove  new<CR>
 nmap <leader>s<down>  :rightbelow new<CR>
 
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <D-j> <c-W>j
+map <D-k> <c-W>k
+map <D-h> <c-W>h
+map <D-l> <c-W>l
 
 " bind command-] to shift right
 nmap <D-]> >>
@@ -227,8 +265,17 @@ imap <D-[> <C-O><<
 
 nmap <leader>x :!
 
-noremap <silent> <C-h> :bprev<CR>
-noremap <silent> <C-l> :bnext<CR>
+" select text that was just pasted
+" nnoremap <leader>v V`]
+
+" Visually select last edited/pasted text
+" nmap gV `[v`]
+
+" opens a vertical split window and switches to it
+nnoremap <leader>w <C-w>v<C-w>l
+
+" noremap <silent> <C-h> :bprev<CR>
+" noremap <silent> <C-l> :bnext<CR>
 " Closes the current buffer
 nnoremap <silent> <Leader>q :Bclose<CR>
 " Closes the current window
@@ -236,6 +283,10 @@ nnoremap <silent> <Leader>Q <C-w>c
 
 " close buffer
 nmap <leader>d :bd<CR>
+
+" write as sudo
+" ca w!! w !sudo tee "%"
+cmap w!! %!sudo tee > /dev/null %
 
 " close all buffers
 nmap <leader>D :bufdo bd<CR>
@@ -253,14 +304,17 @@ endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
 
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>l <C-w>l
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
+" nnoremap <C-h> <c-w>h
+" nnoremap <C-j> <c-w>j
+" nnoremap <C-k> <c-w>k
+" nnoremap <C-l> <c-w>l
 nnoremap <Leader>wo <C-w>o
 nnoremap <Leader>wv <C-w>v<C-w>l
 nnoremap <Leader>ws <C-w>s
 nnoremap <Leader>ww <C-w><C-w>
+
+set splitright
+set splitbelow
 
 " EXTERNAL COPY / PASTE
 " Press F2 before and after pasting from an external Window, not required for
@@ -278,17 +332,17 @@ map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tag
 
 "" Spelling/dictionary
 " Toggle spell checking
-nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>sp :set spell!<CR>
 set dictionary+=/usr/share/dict/words
 
 " Toggle Fullscreen
-nmap <silent> <leader>f :set invfullscreen <CR>
+nmap <leader>f :set invfu<CR><c-w>=
 
 " Enable compiler support for ruby
 compiler ruby
 
 " Easily find a word
-map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+" map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Remove trailing whitespace
 map <silent> <leader>rw :%s/\s\+$//<CR>:let @/=''<CR>:exe ":echo 'whitespace removed'"<CR>
@@ -304,9 +358,43 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+" cmap <C-P> <C-R>=expand("%:p:h") . "/"
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" Fake '|' as text object
+nnoremap di\| T\|d,
+nnoremap da\| F\|d,
+nnoremap ci\| T\|c,
+nnoremap ca\| F\|c,
+nnoremap yi\| T\|y,
+nnoremap ya\| F\|y,
+nnoremap vi\| T\|v,
+nnoremap va\| F\|v,
+
+" Fake '/' as text object
+nnoremap di/ T/d,
+nnoremap da/ F/d,
+nnoremap ci/ T/c,
+nnoremap ca/ F/c,
+nnoremap yi/ T/y,
+nnoremap ya/ F/y,
+nnoremap vi/ T/v,
+nnoremap va/ F/v,
+
 " Center screen
 " https://gist.github.com/1552327
 let g:centerinscreen_active = 0
+
+" local variable -> let() { ... }
+" function! PromoteToLet()
+"   :normal! dd
+"   " :exec '?^\s*it\>'
+"   :normal! P
+"   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+"   :normal ==
+" endfunction
+" :command! PromoteToLet :call PromoteToLet()
+" :map <leader>p :PromoteToLet<cr>
 
 function! ToggleCenterInScreen(desired_width)
     if g:centerinscreen_active == 0
@@ -343,7 +431,13 @@ autocmd FileType python set shiftwidth=4 tabstop=4
 autocmd FileType erlang set shiftwidth=4 tabstop=4
 
 " Go specific
-autocmd FileType go set shiftwidth=4 tabstop=4
+" set rtp+=$GOROOT/misc/vim
+autocmd FileType go set shiftwidth=4 tabstop=4 noexpandtab
+autocmd BufWritePre *.go :silent Fmt
+
+" Ruby specific
+autocmd FileType ruby set shiftwidth=2 tabstop=2
+au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Vagrantfile,Guardfile,Capfile set ft=ruby
 
 "ruby omnicomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -368,7 +462,8 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Vagrantfile,Guardfile,Capfile set ft=ruby
-
-" All plugin/bundle management is separate
-source $HOME/.vimrc.bundles
+set t_Co=256
+set background=dark
+colorscheme molokai
+set transp=1
+" highlight ColorColumn guibg=#3D4646 ctermbg=238

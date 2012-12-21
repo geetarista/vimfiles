@@ -1,93 +1,60 @@
 filetype off
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Manage vundle itself
-Bundle 'gmarik/vundle'
+Bundle "gmarik/vundle"
 map <leader>bi :BundleInstall<CR>
 map <leader>bc :BundleClean<CR>
+map <leader>bd :BundleUpdate<CR>
 
-""" Plugins """"
-
-" Ack
 Bundle "mileszs/ack.vim"
 map <leader>A :Ack<space>
 map <leader>a :Ack <C-r><C-w>
 
-" Align
-Bundle "tsaleh/vim-align"
+" Bundle "tsaleh/vim-align"
 
-" Arduino
-Bundle "Arduino-syntax-file"
+" Bundle "Arduino-syntax-file"
 
-" Autoclose
-Bundle "Townk/vim-autoclose"
+" Bundle "Townk/vim-autoclose"
 
-" Blockle
-Bundle "jgdavey/vim-blockle"
+" Bundle "jgdavey/vim-blockle"
 
-" Buffet
-" Bundle "sandeepcr529/Buffet.vim"
-
-" Bundler
-Bundle "tpope/vim-bundler"
-
-" Cocoa
 " Bundle "msanders/cocoa.vim"
 
-" Coffee-script
-Bundle "kchmck/vim-coffee-script"
-" Compile to .js on save
-" let coffee_compile_on_save = 1
+Bundle "tpope/vim-commentary"
 
-" Commentary
-" Bundle "tpope/vim-commentary"
-
-" ctrlp
 Bundle "kien/ctrlp.vim"
-let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = "<leader>t"
 let g:ctrlp_max_files = 10000
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_working_path_mode = 0 " don't manage working directory
 nmap <leader>bu :CtrlPBuffer<CR>
 nmap <leader>bt :CtrlPBufTag<CR>
 " https://gist.github.com/ee14d6ecb9196a07da56
 if has("unix")
   let g:ctrlp_user_command = {
-    \   'types': {
-    \       1: ['.git/', 'cd %s && git ls-files']
+    \   "types": {
+    \       1: [".git/", "cd %s && git ls-files"]
     \   },
-    \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+    \   "fallback": "find %s -type f | head -" . g:ctrlp_max_files
     \ }
 endif
 
-" Cucumber
-" Bundle "tpope/vim-cucumber"
+" Bundle "toupeira/vim-desertink"
 
-" Desertink
-Bundle "toupeira/vim-desertink"
+" Bundle "EasyGrep"
 
-" EasyGrep
-Bundle "EasyGrep"
+" Bundle "Lokaltog/vim-easymotion"
 
-" Easymotion
-Bundle "Lokaltog/vim-easymotion"
-
-" Eco
-Bundle "jayferd/eco.vim"
-
-" Ego
 Bundle "geetarista/ego.vim"
 
-" Elixir
-Bundle "elixir-lang/vim-elixir"
+" Bundle "tpope/vim-endwise"
 
-" Endwise
-Bundle "tpope/vim-endwise"
-
-" Erlang
 Bundle "jimenezrick/vimerl"
 
-" Fugitive
+Bundle "tpope/vim-eunuch"
+
 Bundle "tpope/vim-fugitive"
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>
@@ -97,249 +64,166 @@ nnoremap <Leader>gm :Gmove
 nnoremap <Leader>gg :Ggrep
 nnoremap <Leader>gd :Gdiff<CR>
 
-" FuzzyFinder
-Bundle "vim-scripts/L9"
-Bundle "vim-scripts/FuzzyFinder"
-" map <leader>t :FufFile **/<CR>
-
-" Gist
 " Bundle "mattn/gist-vim"
 
-" gitv
-Bundle "gregsexton/gitv"
+" Bundle "gregsexton/gitv"
 
-" Go
-Bundle "jnwhiteh/vim-golang"
+Bundle "fsouza/go.vim"
 
-" Gundo
 Bundle "sjl/gundo.vim"
 map <leader>gu :GundoToggle<CR>
 
-" Haml
-Bundle "tpope/vim-haml"
-
-" Hemisu
+" Color scheme
 Bundle "noahfrederick/Hemisu"
 
-" HTML5
-Bundle "othree/html5.vim"
+Bundle "nathanaelkane/vim-indent-guides"
 
-" Indent guides
-" Bundle "nathanaelkane/vim-indent-guides"
+Bundle "michaeljsmith/vim-indent-object"
 
-" Ingretu
-Bundle "gmarik/ingretu"
+Bundle "IndexedSearch"
 
-" Jade
-Bundle "digitaltoad/vim-jade"
+Bundle "programble/itchy.vim"
 
-" Javascript
-Bundle "pangloss/vim-javascript"
+" Bundle "pangloss/vim-javascript"
 
-" Jellybeans
+Bundle "jelera/vim-javascript-syntax"
+
 Bundle "nanotech/jellybeans.vim"
 
-" LargeFile
 Bundle "LargeFile"
 
-" Mac classic theme
-Bundle "nelstrom/vim-mac-classic-theme"
+" Bundle "nelstrom/vim-mac-classic-theme"
 
-" Markdown
-Bundle "tpope/vim-markdown"
+Bundle "goatslacker/mango.vim"
 
-" Markdown (another option)
+" Bundle "tpope/vim-markdown"
+
 " Bundle "plasticboy/vim-markdown"
 
-" Markdown preview
-Bundle "peterhost/vim-markdown-preview"
+" Bundle "peterhost/vim-markdown-preview"
 
-" Matchit
-" Bundle "mhz/vim-matchit"
+" Bundle "matchit.zip"
 
-" Matchtag
 " Bundle "MatchTag"
 
-" Minitest
-Bundle "sunaku/vim-ruby-minitest"
+" Bundle "sunaku/vim-ruby-minitest"
 
-" Molokai
-Bundle "lukerandall/molokai"
+Bundle "tomasr/molokai"
+let g:molokai_original=0
 
-" Monokai
-Bundle "sickill/vim-monokai"
-
-" NERDcommenter
 " Bundle "scrooloose/nerdcommenter"
 " let g:NERDSpaceDelims=1
 
-" NERDTree
-" Bundle "scrooloose/nerdtree"
+Bundle "scrooloose/nerdtree"
 " let NERDTreeShowFiles=1
 " let NERDTreeShowHidden=1
-" map <leader>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
-" Node dict
-Bundle "guileen/vim-node"
+" Bundle "myusuf3/numbers.vim"
 
-" Pastie
-Bundle "tpope/vim-pastie"
+Bundle "sickill/vim-pasta"
 
-" Powerline
 Bundle "Lokaltog/vim-powerline"
-" let g:Powerline_symbols = "fancy"
+Bundle "amadeus/powerline-improved"
+let g:Powerline_symbols = "fancy"
+let g:Powerline_theme = "custom"
+let g:Powerline_colorscheme = "custom"
 
-" Ragtag
-Bundle "tpope/vim-ragtag"
+Bundle "greyblake/vim-preview"
 
-" Rake
-Bundle "tpope/vim-rake"
+Bundle "rodjek/vim-puppet"
 
-" Rails
-Bundle "tpope/vim-rails"
+" Bundle "fs111/pydoc.vim"
 
-" Repeat
+" Bundle "alfredodeza/pytest.vim"
+
+" Bundle "python.vim"
+
+" Bundle "klen/python-mode"
+
+" Bundle "tpope/vim-rails"
+
 Bundle "tpope/vim-repeat"
 
-" Relative Number
 " Bundle "vim-scripts/RltvNmbr.vim"
 
-" RSpec
-Bundle "taq/vim-rspec"
-
-" Ruby
 Bundle "vim-ruby/vim-ruby"
 
-" Ruby debugger
-" Bundle "astashov/vim-ruby-debugger"
+Bundle "orftz/sbd.vim"
 
-" Ruby Refactor
-Bundle "ecomba/vim-ruby-refactoring"
+Bundle "scratch.vim"
 
-" SCSS Syntax
 " Bundle "cakebaker/scss-syntax.vim"
 
-" Session
-Bundle "xolox/vim-session"
-map <Leader>os :OpenSession
-map <Leader>so :OpenSession
-map <Leader>ss :SaveSession
-let g:session_autosave = 'no'
+" Bundle "xolox/vim-session"
+" map <Leader>os :OpenSession
+" map <Leader>so :OpenSession
+" map <Leader>ss :SaveSession
+" let g:session_autosave = "no"
 
-" Shoulda
-" Bundle "tsaleh/vim-shoulda"
+Bundle "jpalardy/vim-slime"
 
-" Showmarks
 " Bundle "harleypig/ShowMarks"
 " let g:showmarks_enable=0
 
-" Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-let g:snippets_dir='~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs'
+let g:snippets_dir="~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs"
 
-" Snipmate node.js
-" Bundle "jamescarr/snipmate-nodejs"
-
-" Solarized
 Bundle "altercation/vim-colors-solarized"
 
-" Sparkup
-" Bundle "bingaman/vim-sparkup"
-
-" Specky
-" Bundle "vim-scripts/Specky"
-
-" Sunburst
 Bundle "sickill/vim-sunburst"
 
-" Supertab
+" Bundle "amdt/sunset"
+
 " Bundle "ervandew/supertab"
 
-" Surround
 Bundle "tpope/vim-surround"
 
-" Syntastic
 Bundle "scrooloose/syntastic"
 
-" Tabular
 Bundle "godlygeek/tabular"
-
-" Tabularize
 if exists(":Tabularize")
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
+  " nmap <Leader>a= :Tabularize /=<CR>
+  " vmap <Leader>a= :Tabularize /=<CR>
+  " nmap <Leader>a{ :Tabularize /{<CR>
+  " vmap <Leader>a{ :Tabularize /{<CR>
+  " nmap <Leader>a: :Tabularize /:\zs<CR>
+  " vmap <Leader>a: :Tabularize /:\zs<CR>
+  " nmap <Leader>a, :Tabularize /,\zs<CR>
+  " vmap <Leader>a, :Tabularize /,\zs<CR>
+  " nmap <Leader>a> :Tabularize /=><CR>
+  " vmap <Leader>a> :Tabularize /=><CR>
+  " nmap <Leader>a\| :Tabularize /\|<CR>
+  " vmap <Leader>a\| :Tabularize /\|<CR> vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
-" Tagbar
 Bundle "majutsushi/tagbar"
 nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-" CoffeeTags
-let g:tagbar_type_coffee = {
-  \ 'kinds' : [
-  \   'f:functions',
-  \   'o:object'
-  \ ],
-  \ 'kind2scope' : {
-  \  'f' : 'object',
-  \   'o' : 'object'
-  \},
-  \ 'sro' : ".",
-  \ 'ctagsbin' : 'coffeetags',
-  \ 'ctagsargs' : ' ',
-  \}
 
-" Tcomment
-Bundle "tomtom/tcomment_vim"
-nnoremap // :TComment<CR>
-vnoremap // :TComment<CR>
+" Bundle "tomtom/tcomment_vim"
+" nnoremap // :TComment<CR>
+" vnoremap // :TComment<CR>
 
-" Textobj User
 Bundle "kana/vim-textobj-user"
 
-" Textobj Ruby block
-Bundle "nelstrom/vim-textobj-rubyblock"
+" Bundle "nelstrom/vim-textobj-rubyblock"
 
-" Tomorrow Theme
-Bundle "chriskempson/tomorrow-theme", { 'rtp': 'vim/' }
+Bundle "chriskempson/tomorrow-theme", { "rtp": "vim/" }
 
-" Unimpaired
 Bundle "tpope/vim-unimpaired"
 
-" Vim Kata
-" Bundle "canadaduane/VimKata"
-" map <leader>vk :VimKata
-
-" Vimroom
 " Bundle "mikewest/vimroom"
 
-" VisIncr
 " Bundle "vim-scripts/VisIncr"
 
-" vividchalk
 Bundle "tpope/vim-vividchalk"
 
-" Yankring
 " Bundle "chrismetcalf/vim-yankring"
-" let g:yankring_history_file='.yankring'
-
-" ZenCoding
-Bundle "mattn/zencoding-vim"
-
-" colors (must be after bundles if using a bundled colorscheme)
-set t_Co=256
-" set background=dark
-colorscheme Tomorrow-Night-Bright " ego
-
-" load filetype plugins/indent settings
-filetype plugin indent on
-
-" Set the color column in case it isn't set
-highlight ColorColumn guibg=#3D4646 ctermbg=238
-
-set foldmethod=syntax
+" let g:yankring_history_file=".yankring"
