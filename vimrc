@@ -214,9 +214,6 @@ map <silent> <Leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vi
 " Write all buffers when losing focus
 au FocusLost * :wa
 
-" Auto resize splits
-autocmd VimResized * wincmd =
-
 " nmap + :res +10
 " nmap - :res -10
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -237,22 +234,36 @@ nnoremap j gj
 nnoremap k gk
 
 "" Splits
+" Auto resize splits
+autocmd VimResized * wincmd =
+
 " Window
-nmap <leader>sw<left>  :topleft  vnew<CR>
-nmap <leader>sw<right> :botright vnew<CR>
-nmap <leader>sw<up>    :topleft  new<CR>
-nmap <leader>sw<down>  :botright new<CR>
+" nmap <leader>sw<left>  :topleft  vnew<CR>
+" nmap <leader>sw<right> :botright vnew<CR>
+" nmap <leader>sw<up>    :topleft  new<CR>
+" nmap <leader>sw<down>  :botright new<CR>
 
 " Buffer
-nmap <leader>s<left>  :leftabove  vnew<CR>
-nmap <leader>s<right> :rightbelow vnew<CR>
-nmap <leader>s<up>    :leftabove  new<CR>
-nmap <leader>s<down>  :rightbelow new<CR>
+" nmap <leader>s<left>  :leftabove  vnew<CR>
+" nmap <leader>s<right> :rightbelow vnew<CR>
+" nmap <leader>s<up>    :leftabove  new<CR>
+" nmap <leader>s<down>  :rightbelow new<CR>
 
-map <D-j> <c-W>j
-map <D-k> <c-W>k
-map <D-h> <c-W>h
-map <D-l> <c-W>l
+" opens a vertical split window and switches to it
+nnoremap <leader>w <C-w>v<C-w>l
+
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+
+" nnoremap <Leader>wo <C-w>o
+" nnoremap <Leader>wv <C-w>v<C-w>l
+" nnoremap <Leader>ws <C-w>s
+" nnoremap <Leader>ww <C-w><C-w>
+
+set splitright
+set splitbelow
 
 " bind command-] to shift right
 nmap <D-]> >>
@@ -271,9 +282,6 @@ nmap <leader>x :!
 
 " Visually select last edited/pasted text
 " nmap gV `[v`]
-
-" opens a vertical split window and switches to it
-nnoremap <leader>w <C-w>v<C-w>l
 
 " noremap <silent> <C-h> :bprev<CR>
 " noremap <silent> <C-l> :bnext<CR>
@@ -304,18 +312,6 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
-
-" nnoremap <C-h> <c-w>h
-" nnoremap <C-j> <c-w>j
-" nnoremap <C-k> <c-w>k
-" nnoremap <C-l> <c-w>l
-nnoremap <Leader>wo <C-w>o
-nnoremap <Leader>wv <C-w>v<C-w>l
-nnoremap <Leader>ws <C-w>s
-nnoremap <Leader>ww <C-w><C-w>
-
-set splitright
-set splitbelow
 
 " EXTERNAL COPY / PASTE
 " Press F2 before and after pasting from an external Window, not required for
