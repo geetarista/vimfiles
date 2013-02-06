@@ -147,11 +147,12 @@ set noswapfile
 
 "" Tabs
 " Use 2 spaces for tabs
-set tabstop=2
+set tabstop=4
+set softtabstop=4
 " Automatic indenting
 set smarttab
 " sets spaces used for indention
-set shiftwidth=2
+set shiftwidth=4
 " continue indention from previous line
 set autoindent
 " tab key inserts spaces instead of tabs
