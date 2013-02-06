@@ -7,7 +7,7 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "mileszs/ack.vim"
 " Bundle "tsaleh/vim-align"
-" Bundle "Arduino-syntax-file"
+Bundle "tclem/vim-arduino"
 " Bundle "Townk/vim-autoclose"
 " Bundle "jgdavey/vim-blockle"
 " Bundle "msanders/cocoa.vim"

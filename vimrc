@@ -422,35 +422,6 @@ if has("gui_macvim")
   map <SwipeRight> :bnext<CR>
 endif
 
-" Python specific
-autocmd FileType python set shiftwidth=4 tabstop=4
-
-" Erlang specific
-autocmd FileType erlang set shiftwidth=4 tabstop=4
-
-" Go specific
-" set rtp+=$GOROOT/misc/vim
-autocmd FileType go set shiftwidth=4 tabstop=4 noexpandtab
-autocmd BufWritePre *.go :silent Fmt
-
-" Ruby specific
-autocmd FileType ruby set shiftwidth=2 tabstop=2
-au BufRead,BufNewFile Gemfile,Rakefile,Thorfile,config.ru,Vagrantfile,Guardfile,Capfile set ft=ruby
-
-"ruby omnicomplete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-
-" Filetypes
-if has("autocmd")
-  autocmd BufNewFile,BufRead Guardfile set filetype=ruby
-  autocmd BufNewFile,BufRead *.json set ft=json
-  autocmd BufNewfile,BufRead *.snippets set noexpandtab
-  autocmd BufNewfile,BufRead *.pde setf arduino
-end
-
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
