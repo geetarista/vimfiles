@@ -378,10 +378,6 @@ nnoremap ya/ F/y,
 nnoremap vi/ T/v,
 nnoremap va/ F/v,
 
-" Center screen
-" https://gist.github.com/1552327
-let g:centerinscreen_active = 0
-
 " local variable -> let() { ... }
 " function! PromoteToLet()
 "   :normal! dd
@@ -393,6 +389,9 @@ let g:centerinscreen_active = 0
 " :command! PromoteToLet :call PromoteToLet()
 " :map <leader>p :PromoteToLet<cr>
 
+" Center screen
+" https://gist.github.com/1552327
+let g:centerinscreen_active = 0
 function! ToggleCenterInScreen(desired_width)
   if g:centerinscreen_active == 0
     let l:window_width = winwidth(winnr())
