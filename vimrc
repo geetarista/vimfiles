@@ -431,6 +431,25 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" Distraction Free Writing
+function! DistractionFreeWriting()
+  set lines=40 columns=100           " size of the editable area
+  set nonumber
+  set nolist
+  set fuoptions=background:#001e1e1a " macvim specific setting for editor's background color
+  set guioptions-=r                  " remove right scrollbar
+  set laststatus=0                   " don't show status line
+  set shm=at
+  set wrap
+  set noruler                        " don't show ruler
+  set fullscreen                     " go to fullscreen editing mode
+  set linebreak                      " break the lines on words
+  set showbreak=
+  silent exec 'NeoComplCacheDisable'
+  hi NonText    guifg=#1e1e1a
+  hi SpecialKey guifg=#1e1e1a
+endfunction
+
 " ============== Plugin Settings ===============
 
 " Vundle
