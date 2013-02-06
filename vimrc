@@ -332,6 +332,8 @@ map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tag
 nmap <silent> <leader>sp :set spell!<CR>
 set dictionary+=/usr/share/dict/words
 
+" Enter fullscreen on startup
+set fu
 " Toggle Fullscreen
 nmap <leader>f :set invfu<CR><c-w>=
 
