@@ -2,6 +2,10 @@
 
 My configuration files for vim.
 
+## Prerequisites
+
+[Patched fonts for powerline](https://github.com/Lokaltog/powerline-fonts)
+
 ## Installation
 
 WARNING: Existing files are deleted during installation. Use at your own risk.
@@ -17,4 +21,3 @@ This will create a symbolic link to each of these files in your home directory.
 ## Bundles
 
 To update plugins, just run :BundleInstall within vim.
-
