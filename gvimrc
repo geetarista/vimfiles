@@ -7,7 +7,7 @@ endif
 " Always show the tab bar
 set showtabline=2
 
-set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline:h14
+set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h14
 
 " Always fullscreen to the max
 set fuoptions=maxvert,maxhorz
