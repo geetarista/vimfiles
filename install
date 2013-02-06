@@ -34,19 +34,6 @@ done
 
 vim -c BundleInstall! -c BundleClean! -c q -c q
 
-# Install jsctags for taglist
-# Using this fork since it works with npm
-npm install -g https://github.com/Swatinem/doctorjs/tarball/master
-
-gem install CoffeeTags
-
-# cd vim/bundle/Command-T
-# For some reason rvm is not a function here...
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && rvm system
-# rake make
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && rvm default
-
 echo
 echo "Installed successfully."
 echo
-
