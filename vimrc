@@ -177,11 +177,11 @@ nmap N Nzz
 nmap * *Nzz
 
 "" Typos
-nmap :W :w
-nmap :Q :q
-nmap :E :e
-nmap :Tabe :tabe
-nmap :Noh :noh
+cnoremap W w
+cnoremap Q q
+cnoremap E e
+cnoremap Tabe tabe
+cnoremap Noh noh
 
 let mapleader = ","
 
