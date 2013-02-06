@@ -35,7 +35,7 @@ set laststatus=2
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
-set history=25
+set history=100
 " Show matching brackets.
 set showmatch
 " Bracket blinking length (tenths of a second)
