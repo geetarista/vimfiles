@@ -56,7 +56,7 @@ if has("wildmenu")
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
   set wildignore+=log/*,tmp/*,script/*,vendor/bundle/*,vendor/plugins/*
-  set wildignore+=node_modules
+  set wildignore+=node_modules,.undodir
 endif
 
 " Show two lines in the status bar
@@ -481,7 +481,7 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/" .
+    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/|.undodir/" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .
