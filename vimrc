@@ -507,6 +507,9 @@ nnoremap <Leader>gd :Gdiff<CR>
 " Gundo
 map <leader>gu :GundoToggle<CR>
 
+" Indent guides
+let g:indent_guides_start_level = 2
+
 " Powerline
 let g:Powerline_symbols = "fancy"
 let g:Powerline_theme = "custom"
