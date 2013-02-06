@@ -110,12 +110,11 @@ noremap <F1> <ESC>
 " set foldlevelstart=99
 " Show fold level in the column
 " set foldcolumn=2
+
 " save folds on exit
 " au BufWinLeave *.* mkview
 " automatically load folds silently
 " au BufWinEnter *.* silent loadview
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " file explorer
 " let g:netrw_liststyle=3 " Use tree-mode as default view
