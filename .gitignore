@@ -8,4 +8,6 @@ vim/view/*
 tags
 *.un~
 vim/bundle/
+vim/cache/
+vim/undo/
 .undodir/

@@ -63,7 +63,7 @@ endif
 set cmdheight=2
 set iskeyword+=_,$,@,%,#,-
 " Do not redraw while running macros (faster)
-set lazyredraw
+" set lazyredraw
 " Display incomplete commands
 set showcmd
 " Show which mode you're in
@@ -397,23 +397,23 @@ let g:centerinscreen_active = 0
 " :map <leader>p :PromoteToLet<cr>
 
 function! ToggleCenterInScreen(desired_width)
-    if g:centerinscreen_active == 0
-        let l:window_width = winwidth(winnr())
-        let l:sidepanel_width = (l:window_width - a:desired_width) / 2
+  if g:centerinscreen_active == 0
+    let l:window_width = winwidth(winnr())
+    let l:sidepanel_width = (l:window_width - a:desired_width) / 2
 
-        exec("silent leftabove " . l:sidepanel_width . "vsplit new")
-        wincmd l
-        exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
-        wincmd h
-        let g:centerinscreen_active = 1
-    else
-        wincmd h
-        close
-        wincmd l
-        close
-        
-        let g:centerinscreen_active = 0
-    endif
+    exec("silent leftabove " . l:sidepanel_width . "vsplit new")
+    wincmd l
+    exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
+    wincmd h
+    let g:centerinscreen_active = 1
+  else
+    wincmd h
+    close
+    wincmd l
+    close
+    
+    let g:centerinscreen_active = 0
+  endif
 endfunction
 
 nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
@@ -461,6 +461,91 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" ============== Plugin Settings ===============
+
+" Vundle
+map <leader>bi :BundleInstall<CR>
+map <leader>bc :BundleClean<CR>
+map <leader>bd :BundleUpdate<CR>
+
+" Ack
+map <leader>A :Ack<space>
+map <leader>a :Ack <C-r><C-w>
+
+" Ctrlp
+let g:ctrlp_max_files = 10000
+let g:ctrlp_map = "<leader>t"
+
+"deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
+let ctrlp_filter_greps = "".
+    \ "egrep -iv '\\.(" .
+    \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
+    \ ")$' | " .
+    \ "egrep -v '^(\\./)?(" .
+    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/" .
+    \ ")'"
+
+let my_ctrlp_git_command = "" .
+    \ "cd %s && git ls-files . -co | " .
+    \ ctrlp_filter_greps
+
+if has("unix")
+    let my_ctrlp_user_command = "" .
+    \ "find %s '(' -type f -or -type l ')' -not -path '*/\\.*/*' | " .
+    \ ctrlp_filter_greps .
+    \ " | head -" . g:ctrlp_max_files
+
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+elseif has('win32')
+    let my_ctrlp_user_command = "" .
+    \ "dir %s /-n /b /s /a-d" .
+    \ ctrlp_filter_greps
+
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+else
+    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
+endif
+
+" Fugitive
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gr :Gremove<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gm :Gmove
+nnoremap <Leader>gg :Ggrep
+nnoremap <Leader>gd :Gdiff<CR>
+
+" Gundo
+map <leader>gu :GundoToggle<CR>
+
+" Powerline
+let g:Powerline_symbols = "fancy"
+let g:Powerline_theme = "custom"
+let g:Powerline_colorscheme = "custom"
+
+" Tabular
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  " nmap <Leader>a= :Tabularize /=<CR>
+  " vmap <Leader>a= :Tabularize /=<CR>
+  " nmap <Leader>a{ :Tabularize /{<CR>
+  " vmap <Leader>a{ :Tabularize /{<CR>
+  " nmap <Leader>a: :Tabularize /:\zs<CR>
+  " vmap <Leader>a: :Tabularize /:\zs<CR>
+  " nmap <Leader>a, :Tabularize /,\zs<CR>
+  " vmap <Leader>a, :Tabularize /,\zs<CR>
+  " nmap <Leader>a> :Tabularize /=><CR>
+  " vmap <Leader>a> :Tabularize /=><CR>
+  " nmap <Leader>a\| :Tabularize /\|<CR>
+  " vmap <Leader>a\| :Tabularize /\|<CR> vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" Tagbar
+" nmap <Leader>tb :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
 set t_Co=256
 set background=dark

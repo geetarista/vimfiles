@@ -5,225 +5,96 @@ call vundle#rc()
 
 " Manage vundle itself
 Bundle "gmarik/vundle"
-map <leader>bi :BundleInstall<CR>
-map <leader>bc :BundleClean<CR>
-map <leader>bd :BundleUpdate<CR>
-
 Bundle "mileszs/ack.vim"
-map <leader>A :Ack<space>
-map <leader>a :Ack <C-r><C-w>
-
 " Bundle "tsaleh/vim-align"
-
 " Bundle "Arduino-syntax-file"
-
 " Bundle "Townk/vim-autoclose"
-
 " Bundle "jgdavey/vim-blockle"
-
 " Bundle "msanders/cocoa.vim"
-
 Bundle "tpope/vim-commentary"
-
 Bundle "kien/ctrlp.vim"
-let g:ctrlp_map = "<leader>t"
-let g:ctrlp_max_files = 10000
-let g:ctrlp_working_path_mode = 0 " don't manage working directory
-nmap <leader>bu :CtrlPBuffer<CR>
-nmap <leader>bt :CtrlPBufTag<CR>
-" https://gist.github.com/ee14d6ecb9196a07da56
-if has("unix")
-  let g:ctrlp_user_command = {
-    \   "types": {
-    \       1: [".git/", "cd %s && git ls-files"]
-    \   },
-    \   "fallback": "find %s -type f | head -" . g:ctrlp_max_files
-    \ }
-endif
-
 " Bundle "toupeira/vim-desertink"
-
 " Bundle "EasyGrep"
-
 " Bundle "Lokaltog/vim-easymotion"
-
 Bundle "geetarista/ego.vim"
-
 " Bundle "tpope/vim-endwise"
-
 Bundle "jimenezrick/vimerl"
-
 Bundle "tpope/vim-eunuch"
-
 Bundle "tpope/vim-fugitive"
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gr :Gremove<CR>
-nnoremap <Leader>gl :Glog<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gm :Gmove
-nnoremap <Leader>gg :Ggrep
-nnoremap <Leader>gd :Gdiff<CR>
-
 " Bundle "mattn/gist-vim"
-
 " Bundle "gregsexton/gitv"
-
 Bundle "fsouza/go.vim"
-
 Bundle "sjl/gundo.vim"
-map <leader>gu :GundoToggle<CR>
-
-" Color scheme
 Bundle "noahfrederick/Hemisu"
-
 Bundle "nathanaelkane/vim-indent-guides"
-
 Bundle "michaeljsmith/vim-indent-object"
-
 Bundle "IndexedSearch"
-
 Bundle "programble/itchy.vim"
-
 " Bundle "pangloss/vim-javascript"
-
 Bundle "jelera/vim-javascript-syntax"
-
 Bundle "nanotech/jellybeans.vim"
-
 Bundle "LargeFile"
-
 " Bundle "nelstrom/vim-mac-classic-theme"
-
 Bundle "goatslacker/mango.vim"
-
 " Bundle "tpope/vim-markdown"
-
 " Bundle "plasticboy/vim-markdown"
-
 " Bundle "peterhost/vim-markdown-preview"
-
 " Bundle "matchit.zip"
-
 " Bundle "MatchTag"
-
 " Bundle "sunaku/vim-ruby-minitest"
-
 Bundle "tomasr/molokai"
-let g:molokai_original=0
-
 " Bundle "scrooloose/nerdcommenter"
 " let g:NERDSpaceDelims=1
-
-Bundle "scrooloose/nerdtree"
+" Bundle "scrooloose/nerdtree"
 " let NERDTreeShowFiles=1
 " let NERDTreeShowHidden=1
-map <leader>n :NERDTreeToggle<CR>
-
+" map <leader>n :NERDTreeToggle<CR>
 " Bundle "myusuf3/numbers.vim"
-
 Bundle "sickill/vim-pasta"
-
-Bundle "Lokaltog/vim-powerline"
-Bundle "amadeus/powerline-improved"
-let g:Powerline_symbols = "fancy"
-let g:Powerline_theme = "custom"
-let g:Powerline_colorscheme = "custom"
-
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "greyblake/vim-preview"
-
 Bundle "rodjek/vim-puppet"
-
 " Bundle "fs111/pydoc.vim"
-
 " Bundle "alfredodeza/pytest.vim"
-
 " Bundle "python.vim"
-
 " Bundle "klen/python-mode"
-
 " Bundle "tpope/vim-rails"
-
 Bundle "tpope/vim-repeat"
-
 " Bundle "vim-scripts/RltvNmbr.vim"
-
 Bundle "vim-ruby/vim-ruby"
-
 Bundle "orftz/sbd.vim"
-
 Bundle "scratch.vim"
-
 " Bundle "cakebaker/scss-syntax.vim"
-
 " Bundle "xolox/vim-session"
 " map <Leader>os :OpenSession
 " map <Leader>so :OpenSession
 " map <Leader>ss :SaveSession
 " let g:session_autosave = "no"
-
 Bundle "jpalardy/vim-slime"
-
 " Bundle "harleypig/ShowMarks"
 " let g:showmarks_enable=0
-
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-let g:snippets_dir="~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs"
-
+" let g:snippets_dir="~/.vim/bundle/snipmate-snippets,~/.vim/bundle/snipmate-nodejs"
 Bundle "altercation/vim-colors-solarized"
-
 Bundle "sickill/vim-sunburst"
-
 " Bundle "amdt/sunset"
-
 " Bundle "ervandew/supertab"
-
 Bundle "tpope/vim-surround"
-
 Bundle "scrooloose/syntastic"
-
 Bundle "godlygeek/tabular"
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  " nmap <Leader>a= :Tabularize /=<CR>
-  " vmap <Leader>a= :Tabularize /=<CR>
-  " nmap <Leader>a{ :Tabularize /{<CR>
-  " vmap <Leader>a{ :Tabularize /{<CR>
-  " nmap <Leader>a: :Tabularize /:\zs<CR>
-  " vmap <Leader>a: :Tabularize /:\zs<CR>
-  " nmap <Leader>a, :Tabularize /,\zs<CR>
-  " vmap <Leader>a, :Tabularize /,\zs<CR>
-  " nmap <Leader>a> :Tabularize /=><CR>
-  " vmap <Leader>a> :Tabularize /=><CR>
-  " nmap <Leader>a\| :Tabularize /\|<CR>
-  " vmap <Leader>a\| :Tabularize /\|<CR> vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
-
 Bundle "majutsushi/tagbar"
-nmap <Leader>tb :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
 " Bundle "tomtom/tcomment_vim"
 " nnoremap // :TComment<CR>
 " vnoremap // :TComment<CR>
-
 Bundle "kana/vim-textobj-user"
-
 " Bundle "nelstrom/vim-textobj-rubyblock"
-
 Bundle "chriskempson/tomorrow-theme", { "rtp": "vim/" }
-
 Bundle "tpope/vim-unimpaired"
-
 " Bundle "mikewest/vimroom"
-
 " Bundle "vim-scripts/VisIncr"
-
 Bundle "tpope/vim-vividchalk"
-
 " Bundle "chrismetcalf/vim-yankring"
 " let g:yankring_history_file=".yankring"
