@@ -116,6 +116,14 @@ set nofoldenable
 " automatically load folds silently
 " au BufWinEnter *.* silent loadview
 
+" Create line above and insert cursor
+inoremap <c-k> <esc>O
+
+" Make and restore sessions
+" set sessionoptions=blank,buffers,curdir,folds,tabpages
+" noremap <leader>ms :mksession! ~/.vim/.session<cr>
+" noremap <leader>rs :source ~/.vim/.session<cr>
+
 " file explorer
 " let g:netrw_liststyle=3 " Use tree-mode as default view
 " let g:netrw_list_hide='\.un~'
@@ -181,6 +189,7 @@ cnoremap Q q
 cnoremap E e
 cnoremap Tabe tabe
 cnoremap Noh noh
+nnoremap    K    <Nop>
 
 let mapleader = ","
 
