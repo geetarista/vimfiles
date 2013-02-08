@@ -99,7 +99,7 @@ noremap <F1> <ESC>
 
 "" Folds
 " don't fold by default
-" set nofoldenable
+set nofoldenable
 " indent-sensitive folding
 " set foldmethod=syntax
 " Level of indentation
