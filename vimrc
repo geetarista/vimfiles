@@ -559,5 +559,4 @@ let g:tagbar_autofocus = 1
 set t_Co=256
 set background=dark
 colorscheme molokai
-set transp=1
 " highlight ColorColumn guibg=#3D4646 ctermbg=238
