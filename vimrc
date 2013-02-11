@@ -184,11 +184,11 @@ nmap N Nzz
 nmap * *Nzz
 
 "" Typos
-cnoremap W w
-cnoremap Q q
-cnoremap E e
-cnoremap Tabe tabe
-cnoremap Noh noh
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev E e
+cnoreabbrev Tabe tabe
+cnoreabbrev Noh noh
 nnoremap    K    <Nop>
 
 let mapleader = ","
