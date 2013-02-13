@@ -530,6 +530,9 @@ map <leader>gu :GundoToggle<CR>
 " Indent guides
 let g:indent_guides_start_level = 2
 
+" NERD Commenter
+let g:NERDSpaceDelims=1
+
 " Powerline
 let g:Powerline_symbols = "fancy"
 

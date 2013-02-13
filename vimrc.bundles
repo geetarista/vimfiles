@@ -11,7 +11,7 @@ Bundle "tclem/vim-arduino"
 Bundle "Townk/vim-autoclose"
 " Bundle "jgdavey/vim-blockle"
 " Bundle "msanders/cocoa.vim"
-Bundle "tpope/vim-commentary"
+" Bundle "tpope/vim-commentary"
 Bundle "kien/ctrlp.vim"
 " Bundle "toupeira/vim-desertink"
 " Bundle "EasyGrep"
@@ -44,7 +44,6 @@ Bundle "goatslacker/mango.vim"
 " Bundle "sunaku/vim-ruby-minitest"
 Bundle "tomasr/molokai"
 " Bundle "scrooloose/nerdcommenter"
-" let g:NERDSpaceDelims=1
 " Bundle "scrooloose/nerdtree"
 " let NERDTreeShowFiles=1
 " let NERDTreeShowHidden=1
@@ -86,9 +85,8 @@ Bundle "tpope/vim-surround"
 Bundle "scrooloose/syntastic"
 Bundle "godlygeek/tabular"
 Bundle "majutsushi/tagbar"
-" Bundle "tomtom/tcomment_vim"
-" nnoremap // :TComment<CR>
-" vnoremap // :TComment<CR>
+Bundle "tomtom/tcomment_vim"
+noremap <D-/> :TComment<CR>
 Bundle "kana/vim-textobj-user"
 " Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "chriskempson/tomorrow-theme", { "rtp": "vim/" }
