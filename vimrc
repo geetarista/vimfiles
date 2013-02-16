@@ -341,7 +341,7 @@ nmap <silent> <leader>sp :set spell!<CR>
 set dictionary+=/usr/share/dict/words
 
 " Enter fullscreen on startup
-set fu
+" set fu
 " Toggle Fullscreen
 nmap <leader>f :set invfu<CR><c-w>=
 
