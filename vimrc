@@ -59,8 +59,6 @@ if has("wildmenu")
   set wildignore+=node_modules,.undodir
 endif
 
-" Show two lines in the status bar
-set cmdheight=2
 set iskeyword+=_,$,@,%,#,-
 " Do not redraw while running macros (faster)
 " set lazyredraw
