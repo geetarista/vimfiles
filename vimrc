@@ -31,7 +31,7 @@ set t_vb=
 " Symbols when viewing invisibles
 set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
 " Always show status line
-" set laststatus=2
+set laststatus=2
 set cursorline
 " set autoread "Set to auto read when a file is changed from the outside
 "Set how many commands to retain in history
