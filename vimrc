@@ -459,9 +459,9 @@ endfunction
 " ============== Plugin Settings ===============
 
 " Vundle
-map <leader>bi :BundleInstall<CR>
-map <leader>bc :BundleClean<CR>
-map <leader>bd :BundleUpdate<CR>
+map <leader>vi :BundleInstall<CR>
+map <leader>vc :BundleClean<CR>
+map <leader>vd :BundleUpdate<CR>
 
 " Ack
 map <leader>A :Ack<space>
@@ -470,8 +470,10 @@ map <leader>a :Ack <C-r><C-w>
 " Ctrlp
 let g:ctrlp_max_files = 10000
 let g:ctrlp_map = "<leader>t"
-
-"deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant" .
+map <leader>b :CtrlPBuffer<CR>
+map <leader>l :CtrlPLine<CR>
+let g:ctrlp_custom_ignore = "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant/|.env/"
+let g:ctrlp_clear_cache_on_exit = 0
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
     \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
