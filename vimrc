@@ -559,7 +559,9 @@ endif
 " nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
-set t_Co=256
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+  set t_Co=256
+endif
 set background=dark
 colorscheme molokai
 " highlight ColorColumn guibg=#3D4646 ctermbg=238
