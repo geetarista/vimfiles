@@ -301,7 +301,7 @@ nnoremap <silent> <Leader>Q <C-w>c
 
 " write as sudo
 " ca w!! w !sudo tee "%"
-cmap w!! %!sudo tee > /dev/null %
+command! W %!sudo tee > /dev/null %
 
 " close all buffers
 nmap <leader>D :bufdo bd<CR>
