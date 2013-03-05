@@ -114,8 +114,11 @@ set nofoldenable
 " automatically load folds silently
 " au BufWinEnter *.* silent loadview
 
-" Create line above and insert cursor
+" Cursor movement in insert mode
 inoremap <c-k> <esc>O
+inoremap <c-l> <esc>A
+inoremap <c-h> <esc>I
+inoremap <c-j> <esc>o
 
 " Make and restore sessions
 " set sessionoptions=blank,buffers,curdir,folds,tabpages
