@@ -472,7 +472,7 @@ map <leader>a :Ack <C-r><C-w>
 
 " Ctrlp
 let g:ctrlp_max_files = 10000
-let g:ctrlp_map = "<leader>t"
+" let g:ctrlp_map = "<leader>t"
 map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
 let g:ctrlp_custom_ignore = "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant/|.env/|.bundle/"
