@@ -539,6 +539,15 @@ let g:NERDSpaceDelims=1
 " Powerline
 let g:Powerline_symbols = "fancy"
 
+" Syntastic
+let g:syntastic_puppet_lint_arguments = '--no-80chars-check --no-double_quoted_strings-check --no-variable_scope-check --no-class_parameter_defaults'
+let g:syntastic_python_checker = "pyflakes"
+" let g:syntastic_mode_map = {
+"   \ 'mode': 'active',
+"   \ 'active_filetypes': [],
+"   \ 'passive_filetypes': []
+"   \ }
+
 " Tabular
 if exists(":Tabularize")
   nmap <Leader>a= :Tabularize /=<CR>
