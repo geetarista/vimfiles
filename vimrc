@@ -568,4 +568,5 @@ endif
 set background=dark
 " Silently fail on first install
 silent! colorscheme molokai
+let g:molokai_original = 0
 " highlight ColorColumn guibg=#3D4646 ctermbg=238
