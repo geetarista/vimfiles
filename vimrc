@@ -56,7 +56,7 @@ if has("wildmenu")
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
   set wildignore+=log/*,tmp/*,script/*,vendor/bundle/*,vendor/plugins/*
-  set wildignore+=node_modules,.undodir
+  set wildignore+=node_modules/*,.undodir/*,.bundle/*
 endif
 
 set iskeyword+=_,$,@,%,#,-
@@ -475,14 +475,14 @@ let g:ctrlp_max_files = 10000
 let g:ctrlp_map = "<leader>t"
 map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
-let g:ctrlp_custom_ignore = "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant/|.env/"
+let g:ctrlp_custom_ignore = "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant/|.env/|.bundle/"
 let g:ctrlp_clear_cache_on_exit = 0
 let ctrlp_filter_greps = "".
     \ "egrep -iv '\\.(" .
     \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/|.undodir/" .
+    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/|.undodir/|.bundle/" .
     \ ")'"
 
 let my_ctrlp_git_command = "" .
