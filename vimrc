@@ -221,7 +221,7 @@ map <silent> <Leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vi
 " endif
 
 " Write all buffers when losing focus
-au FocusLost * :wa
+" au FocusLost * :wa
 
 " nmap + :res +10
 " nmap - :res -10
