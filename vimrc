@@ -1,6 +1,9 @@
 " no vi compatibility
 set nocompatible
 
+" Temporary fix in 7.4 for plugins that aren't up to date
+set regexpengine=1
+
 " All plugin/bundle management is separate
 if filereadable(expand('~/.vimrc.bundles'))
   source $HOME/.vimrc.bundles
@@ -114,6 +117,11 @@ set nofoldenable
 " automatically load folds silently
 " au BufWinEnter *.* silent loadview
 
+augroup restorecursor
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
 " Cursor movement in insert mode
 inoremap <c-k> <esc>O
 inoremap <c-l> <esc>A
@@ -204,6 +212,10 @@ vmap <C-d> y'>p " Duplicate visual selection
 
 " Easier command mode
 nnoremap ; :
+
+" Command history
+cnoremap <c-k> <up>
+cnoremap <c-j> <down>
 
 " Quicker q
 map <leader>q :q<CR>
@@ -333,8 +345,10 @@ vmap <D-c> "+y
 vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
 " ctags
-set tags=.tags
+set tags=.tags;$HOME/.tags
 map <leader>e :silent :! ctags --recurse --sort=yes -f .tags<CR>:exe ":echo 'tags generated'"<CR>
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "" Spelling/dictionary
 " Toggle spell checking
@@ -432,7 +446,7 @@ if has("gui_macvim")
 endif
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <F7> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -462,9 +476,9 @@ endfunction
 " ============== Plugin Settings ===============
 
 " Vundle
-map <leader>vi :BundleInstall<CR>
-map <leader>vc :BundleClean<CR>
-map <leader>vd :BundleUpdate<CR>
+" map <leader>vi :BundleInstall<CR>
+" map <leader>vc :BundleClean<CR>
+" map <leader>vd :BundleUpdate<CR>
 
 " Ack
 map <leader>A :Ack<space>
@@ -510,12 +524,15 @@ endif
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
 
 func! MyCtrlPMappings()
-    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+  nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
 endfunc
 
 func! s:DeleteBuffer()
-    exec "bd" fnamemodify(getline('.')[2:], ':p')
-    exec "norm \<F5>"
+  let line = getline('.')
+  let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
+        \ : fnamemodify(line[2:], ':p')
+  exec "bd" bufid
+  exec "norm \<F5>"
 endfunc
 
 " Fugitive
@@ -527,26 +544,69 @@ nnoremap <Leader>gm :Gmove
 nnoremap <Leader>gg :Ggrep
 nnoremap <Leader>gd :Gdiff<CR>
 
+augroup fugitivefix
+  autocmd!
+  autocmd BufReadPost fugitive:// set bufhidden=delete
+augroup END
+
 " Gundo
 map <leader>gu :GundoToggle<CR>
 
 " Indent guides
 let g:indent_guides_start_level = 2
 
+" Markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+" NeoComplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#auto_completion_start_length = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 50000
+let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+
 " NERD Commenter
 let g:NERDSpaceDelims=1
 
 " Powerline
-let g:Powerline_symbols = "fancy"
+" let g:Powerline_symbols = "fancy"
+
+" Startify
+let g:startify_session_autoload = 1
+let g:startify_bookmarks = [
+  \ '~/workspace/puppet',
+  \ '~/workspace/kiip',
+  \ '~/workspace/launchy',
+  \ '~/workspace/vimfiles',
+  \ ]
+
+let g:startify_custom_header = [
+  \ '',
+  \ '                                _________  __  __',
+  \ '            __                 /\_____   \/\ \/\ `\',
+  \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
+  \ '  /\ \ /\ \\/\ \ /` __` __`\        /   /  \ \ \_\  \__',
+  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \      /   / __ \ \___   __\',
+  \ '   \ \___/   \ \_\ \_\ \_\ \_\    /\__/ /\_\ \/___/\_\_/',
+  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_/  \/_/      \/_/',
+  \ '',
+  \ '  ======================================================',
+  \ '',
+  \ ]
 
 " Syntastic
-let g:syntastic_puppet_lint_arguments = '--no-80chars-check --no-double_quoted_strings-check --no-variable_scope-check --no-class_parameter_defaults'
-let g:syntastic_python_checker = "pyflakes"
-" let g:syntastic_mode_map = {
-"   \ 'mode': 'active',
-"   \ 'active_filetypes': [],
-"   \ 'passive_filetypes': []
-"   \ }
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-double_quoted_strings-check --no-variable_scope-check --no-class_parameter_defaults'
+let g:syntastic_python_checkers = ["pyflakes", "pep8"]
+let g:syntastic_python_pep8_args='--ignore=E501,E225 --max-line-length=1000'
+let g:syntastic_mode_map = {
+  \ 'mode': 'active',
+  \ 'active_filetypes': [],
+  \ 'passive_filetypes': []
+  \ }
 
 " Tabular
 if exists(":Tabularize")
@@ -570,6 +630,16 @@ endif
 " Tagbar
 " nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+
+" TComment
+noremap <D-/> :TComment<CR>
+
+" UltiSnips
+" let g:UltiSnips = {}
+" let g:UltiSnips.ExpandTrigger="<c-j>"
+" let g:UltiSnips.ExpandTrigger="<tab>"
+" let g:UltiSnips.JumpForwardTrigger="<tab>"
+" let g:UltiSnips.JumpBackwardTrigger="<s-tab>"
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
   set t_Co=256
