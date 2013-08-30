@@ -1,7 +1,7 @@
 if has("gui_macvim")
   set antialias                       " Smooth fonts.
   set encoding=utf-8                  " Use UTF-8 everywhere.
-  set guioptions=egmt                 " Tabs, grey menu items, menu bar, tearoff menu items
+  set guioptions=egmc                 " Tabs, grey menu items, menu bar, console dialogs
 
   macmenu File.Print key=<nop>
 endif
