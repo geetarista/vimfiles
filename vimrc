@@ -1,9 +1,6 @@
 " no vi compatibility
 set nocompatible
 
-" Temporary fix in 7.4 for plugins that aren't up to date
-set regexpengine=1
-
 " All plugin/bundle management is separate
 if filereadable(expand('~/.vimrc.bundles'))
   source $HOME/.vimrc.bundles
