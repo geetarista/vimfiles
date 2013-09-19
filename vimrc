@@ -227,7 +227,8 @@ map <leader>w :w<CR>
 
 "" vimrc
 " Fast editing of .vimrc
-map <leader>v :vsplit ~/.vimrc<CR><C-W>
+"<C-W>w
+map <leader>v :vsplit ~/.vimrc<CR>
 " Fast reloading of the .vimrc
 map <silent> <Leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vimrc reloaded'<CR>
 " When vimrc is edited, reload it
