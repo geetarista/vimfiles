@@ -95,6 +95,13 @@ noremap <Right> <Nop>
 
 noremap <F1> <ESC>
 
+" Emacs (terminal) bindings
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Delete>
+cnoremap <C-g>  <C-c>
+
 "" Folds
 " don't fold by default
 set nofoldenable
