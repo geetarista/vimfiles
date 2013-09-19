@@ -51,7 +51,7 @@ set encoding=utf-8 " Necessary to show unicode glyphs
 if has("wildmenu")
   set wildmenu
   set wildmode=list:longest,list:full
-  set wildignore+=*.a,*.o,*.pyc,*.rbc
+  set wildignore+=*.a,*.o,*.pyc,*.rbc,*.dSYM
   set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.psd
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.tmp,*.un~
