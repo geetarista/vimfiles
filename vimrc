@@ -512,6 +512,15 @@ func! s:DeleteBuffer()
   exec "norm \<F5>"
 endfunc
 
+" Detectindent
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+let g:detectindent_max_lines_to_analyse = 1024
+augroup detectindent
+  autocmd!
+  autocmd BufReadPost * :DetectIndent
+augroup END
+
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>

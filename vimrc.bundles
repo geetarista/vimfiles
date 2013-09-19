@@ -17,6 +17,7 @@ Bundle "kien/ctrlp.vim"
 Bundle "endel/ctrlp-filetype.vim"
 Bundle "Raimondi/delimitMate"
 " Bundle "toupeira/vim-desertink"
+Bundle 'aclindsa/detectindent'
 " Bundle "EasyGrep"
 " Bundle "Lokaltog/vim-easymotion"
 " Bundle "geetarista/ego.vim"
