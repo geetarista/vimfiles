@@ -51,12 +51,14 @@ set encoding=utf-8 " Necessary to show unicode glyphs
 if has("wildmenu")
   set wildmenu
   set wildmode=list:longest,list:full
-  set wildignore+=*.a,*.o,*.pyc,*.rbc,*.dSYM
-  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.psd
+  set wildignore+=*.a,*.o,*.so,*.pyo,*.pyc,*.rbc,*.dSYM,*.beam,*.jar,*.class
+  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd
+  set wildignore+=*.tar.gz,*.tar.bz2,*.zip
   set wildignore+=.DS_Store,.git,.hg,.svn
-  set wildignore+=*~,*.swp,*.tmp,*.un~
-  set wildignore+=log/*,tmp/*,script/*,vendor/bundle/*,vendor/plugins/*
-  set wildignore+=node_modules/*,.undodir/*,.bundle/*
+  set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
+  set wildignore+=*.vagrant/,*.env/
+  set wildignore+=*log/*,*tmp/*,*script/*,*classes/*,*static_components/*,deploy/*
+  set wildignore+=*node_modules/*,*.bundle/*,*vendor/*
 endif
 
 set iskeyword+=_,$,@,%,#,-
@@ -491,39 +493,9 @@ map <leader>a :Ack <C-r><C-w>
 
 " Ctrlp
 let g:ctrlp_max_files = 10000
-" let g:ctrlp_map = "<leader>t"
 map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
-let g:ctrlp_custom_ignore = "deploy/|classes/|vendor/|.git/|.hg/|.svn/|.*migrations/|.vagrant/|.env/|.bundle/"
 let g:ctrlp_clear_cache_on_exit = 0
-let ctrlp_filter_greps = "".
-    \ "egrep -iv '\\.(" .
-    \ "jar|class|swp|swo|log|so|o|pyc|pyo|jpe?g|png|gif|mo|po|DS_Store|a|beam|tar.gz|tar.bz2" .
-    \ ")$' | " .
-    \ "egrep -v '^(\\./)?(" .
-    \ ".git/|.rbc/|.hg/|.svn/|.vagrant/|node_modules/|env/|build/|static/compressed/|.undodir/|.bundle/" .
-    \ ")'"
-
-let my_ctrlp_git_command = "" .
-    \ "cd %s && git ls-files . -co | " .
-    \ ctrlp_filter_greps
-
-if has("unix")
-    let my_ctrlp_user_command = "" .
-    \ "find %s '(' -type f -or -type l ')' -not -path '*/\\.*/*' | " .
-    \ ctrlp_filter_greps .
-    \ " | head -" . g:ctrlp_max_files
-
-    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
-elseif has('win32')
-    let my_ctrlp_user_command = "" .
-    \ "dir %s /-n /b /s /a-d" .
-    \ ctrlp_filter_greps
-
-    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
-else
-    let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command]
-endif
 
 " Delete buffer from within CtrlPBuf
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
