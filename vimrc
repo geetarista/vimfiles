@@ -147,7 +147,6 @@ inoremap <c-j> <esc>o
 set nrformats=hex
 
 " Persistent Undo
-set undodir=~/.vim/undo
 set undofile
 
 " Do not use swapfiles or backup since writebackup is used
