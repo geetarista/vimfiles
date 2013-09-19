@@ -335,8 +335,9 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-
 nnoremap <C-n> :call NumberToggle()<cr>
+
+nmap <F5> :<C-U>silent make %:r<CR>:redraw!<CR>:!./%:r<CR>
 
 " EXTERNAL COPY / PASTE
 " Press F2 before and after pasting from an external Window, not required for
