@@ -7,7 +7,7 @@ if has("gui_macvim")
 endif
 
 " Always show the tab bar
-set showtabline=2
+set showtabline=1
 
 set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h14
 
