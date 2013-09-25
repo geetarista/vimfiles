@@ -336,6 +336,7 @@ function! NumberToggle()
     set norelativenumber
   else
     set relativenumber
+    set nonumber
   endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
