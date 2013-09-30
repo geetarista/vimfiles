@@ -499,7 +499,7 @@ map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Delete buffer from within CtrlPBuf
+" Delete buffer from within CtrlPBuffer
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
 
 func! MyCtrlPMappings()
@@ -547,6 +547,12 @@ map <leader>gu :GundoToggle<CR>
 
 " Indent guides
 let g:indent_guides_start_level = 2
+
+" Jinja
+augroup jinja
+    au!
+    au BufNewFile,BufRead *.jinja2,*.j2 set ft=jinja
+augroup END
 
 " Markdown
 augroup markdown
