@@ -493,6 +493,7 @@ endfunction
 map <leader>A :Ack<space>
 map <leader>a :Ack <C-r><C-w>
 map <D-F> :args<space>`ag -l '<C-r><C-w>' .`
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Ctrlp
 let g:ctrlp_max_files = 10000
