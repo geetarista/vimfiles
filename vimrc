@@ -56,9 +56,8 @@ if has("wildmenu")
   set wildignore+=*.tar.gz,*.tar.bz2,*.zip
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
-  set wildignore+=*.vagrant/,*.env/
-  set wildignore+=*log/*,*tmp/*,*script/*,*classes/*,*static_components/*,deploy/*
-  set wildignore+=*node_modules/*,*.bundle/*,*vendor/*
+  set wildignore+=.vagrant/*,env/*,.env/*,node_modules/*,.bundle/*,vendor/*
+  set wildignore+=log/*,tmp/*,classes/*,static_components/*,deploy/*
 endif
 
 set iskeyword+=_,$,@,%,#,-
