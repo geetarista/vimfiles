@@ -317,7 +317,7 @@ nnoremap <silent> <Leader>q :Bclose<CR>
 nnoremap <silent> <Leader>Q <C-w>c
 
 " close buffer
-" nmap <leader>d :bd<CR>
+nmap <leader>d :bd<CR>
 
 " write as sudo
 ca w!! w !sudo tee > /dev/null %
