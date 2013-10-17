@@ -584,6 +584,10 @@ let g:NERDSpaceDelims=1
 " Powerline
 " let g:Powerline_symbols = "fancy"
 
+" Pygments
+" let g:rtfp_theme = 'emacs'
+" let g:rtfp_font = 'Monaco'
+
 " Startify
 let g:startify_session_autoload = 1
 let g:startify_bookmarks = [

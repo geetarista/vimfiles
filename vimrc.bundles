@@ -70,6 +70,7 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "greyblake/vim-preview"
 Bundle "rodjek/vim-puppet"
 " Bundle "fs111/pydoc.vim"
+Bundle "rafaelfranca/rtf_pygmentize"
 " Bundle "alfredodeza/pytest.vim"
 " Bundle "python.vim"
 " Bundle "klen/python-mode"
