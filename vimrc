@@ -212,7 +212,8 @@ map <silent> <leader><Esc> :noh<CR>
 " Shortcut to toggle list (i for invisibles)
 nmap <leader>i :set list!<CR>
 
-vmap <C-d> y'>p " Duplicate visual selection
+" Duplicate visual selection
+vmap <C-d> y'>p
 
 " Easier command mode
 nnoremap ; :
