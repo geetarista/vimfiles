@@ -656,6 +656,6 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
 endif
 set background=dark
 " Silently fail on first install
-silent! colorscheme molokai
-let g:molokai_original = 0
+silent! colorscheme lucius
+" let g:molokai_original = 0
 " highlight ColorColumn guibg=#3D4646 ctermbg=238
