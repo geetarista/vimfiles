@@ -1,6 +1,10 @@
 " no vi compatibility
 set nocompatible
 
+if exists("$GOROOT")
+  set rtp+=$GOROOT/misc/vim/
+endif
+
 " All plugin/bundle management is separate
 if filereadable(expand('~/.vimrc.bundles'))
   source $HOME/.vimrc.bundles
@@ -543,9 +547,6 @@ augroup END
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
-
-" Godef
-let g:godef_split=0
 
 " Gundo
 map <leader>gu :GundoToggle<CR>
