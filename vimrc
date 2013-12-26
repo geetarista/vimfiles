@@ -299,7 +299,7 @@ set splitbelow
 " bind command-] to shift right
 nmap <D-]> >>
 vmap <D-]> >>
-imap <D-]> <C-O>>>
+imap <D-]> <C-O>>
 
 " bind command-[ to shift left
 nmap <D-[> <<
