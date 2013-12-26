@@ -247,8 +247,8 @@ map <silent> <Leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vi
 
 " nmap + :res +10
 " nmap - :res -10
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+" nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+" nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 " Opens an edit command with the path of the currently edited file filled in Normal mode: <Leader>ee
 map <Leader>ee :e <C-R>=expand("%:p:h") . "/" <CR>
 
