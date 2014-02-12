@@ -1,7 +1,14 @@
 " no vi compatibility
 set nocompatible
 
+filetype off
+filetype plugin indent off
+
 if exists("$GOROOT")
+  let g:gofmt_command='goimports'
+  let g:godef_split=0
+  au FileType go au BufWritePre <buffer> Fmt
+  " au BufWritePost *.go silent! !ctags -R &
   set rtp+=$GOROOT/misc/vim/
 endif
 
@@ -60,8 +67,8 @@ if has("wildmenu")
   set wildignore+=*.tar.gz,*.tar.bz2,*.zip
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
-  set wildignore+=.vagrant/*,env/*,.env/*,node_modules/*,.bundle/*,vendor/*
-  set wildignore+=log/*,tmp/*,classes/*,static_components/*,deploy/*
+  set wildignore+=.vagrant,env,.env,node_modules,.bundle,vendor
+  set wildignore+=log,tmp,classes,static_components,deploy,static,_site
 endif
 
 set iskeyword+=_,$,@,%,#,-
