@@ -33,7 +33,7 @@ Bundle "mattn/webapi-vim"
 " Bundle "airblade/vim-gitgutter"
 " Bundle "gregsexton/gitv"
 " Bundle "fsouza/go.vim"
-" Bundle 'nsf/gocode', {'rtp': 'vim/'}
+Bundle 'nsf/gocode', {'rtp': 'vim/'}
 Bundle "dgryski/vim-godef"
 " Bundle "raggi/vim-compiler-go"
 Bundle "sjl/gundo.vim"
@@ -65,6 +65,8 @@ Bundle "tomasr/molokai"
 " let NERDTreeShowFiles=1
 " let NERDTreeShowHidden=1
 " map <leader>n :NERDTreeToggle<CR>
+" Testing this out for neocomplete and go
+Bundle "Shougo/echodoc.vim"
 Bundle "Shougo/neocomplete.vim"
 Bundle "Shougo/neosnippet.vim"
 Bundle "Shougo/neosnippet-snippets"
