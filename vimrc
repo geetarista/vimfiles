@@ -4,13 +4,13 @@ set nocompatible
 filetype off
 filetype plugin indent off
 
-if exists("$GOROOT")
-  let g:gofmt_command='goimports'
-  let g:godef_split=0
-  au FileType go au BufWritePre <buffer> Fmt
-  " au BufWritePost *.go silent! !ctags -R &
-  set rtp+=$GOROOT/misc/vim/
-endif
+" if exists("$GOROOT")
+"   let g:gofmt_command='goimports'
+"   let g:godef_split=0
+"   au FileType go au BufWritePre <buffer> Fmt
+"   " au BufWritePost *.go silent! !ctags -R &
+"   set rtp+=$GOROOT/misc/vim/
+" endif
 
 " All plugin/bundle management is separate
 if filereadable(expand('~/.vimrc.bundles'))
@@ -535,6 +535,9 @@ augroup END
 let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
+
+" Go
+let g:go_snippet_engine = "neosnippet"
 
 " Gundo
 map <leader>gu :GundoToggle<CR>

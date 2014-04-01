@@ -32,10 +32,13 @@ Bundle "mattn/gist-vim"
 Bundle "mattn/webapi-vim"
 " Bundle "airblade/vim-gitgutter"
 " Bundle "gregsexton/gitv"
+" {{{ Go
+Bundle "fatih/vim-go"
 " Bundle "fsouza/go.vim"
-Bundle 'nsf/gocode', {'rtp': 'vim/'}
-Bundle "dgryski/vim-godef"
+" Bundle 'nsf/gocode', {'rtp': 'vim/'}
+" Bundle "dgryski/vim-godef"
 " Bundle "raggi/vim-compiler-go"
+" }}}
 Bundle "sjl/gundo.vim"
 Bundle "noahfrederick/Hemisu"
 " Bundle "nathanaelkane/vim-indent-guides"
