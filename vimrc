@@ -68,7 +68,7 @@ if has("wildmenu")
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
   set wildignore+=.vagrant,env,.env,node_modules,.bundle,vendor
-  set wildignore+=log,tmp,classes,static_components,deploy,static,_site
+  set wildignore+=log,tmp,classes,static_components,deploy,_site
 endif
 
 set iskeyword+=_,$,@,%,#,-
