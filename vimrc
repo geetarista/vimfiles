@@ -352,7 +352,7 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-nmap <F5> :<C-U>silent make %:r<CR>:redraw!<CR>:!./%:r<CR>
+" nmap <F5> :<C-U>silent make %:r<CR>:redraw!<CR>:!./%:r<CR>
 
 " EXTERNAL COPY / PASTE
 " Press F2 before and after pasting from an external Window, not required for
@@ -493,20 +493,8 @@ map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Delete buffer from within CtrlPBuffer
-let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-
-func! MyCtrlPMappings()
-  nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
-endfunc
-
-func! s:DeleteBuffer()
-  let line = getline('.')
-  let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
-        \ : fnamemodify(line[2:], ':p')
-  exec "bd" bufid
-  exec "norm \<F5>"
-endfunc
+" ctrlp_bdelete
+call ctrlp_bdelete#init()
 
 " Detectindent
 let g:detectindent_preferred_expandtab = 1
