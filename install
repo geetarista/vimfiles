@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
 
@@ -33,6 +35,8 @@ for name in *; do
 done
 
 vim -c BundleInstall! -c BundleClean! -c q -c q
+
+touch $HOME/.vimfiles_installed
 
 echo
 echo "Installed successfully."
