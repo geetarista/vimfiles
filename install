@@ -35,6 +35,7 @@ for name in *; do
 done
 
 vim -c BundleInstall! -c BundleClean! -c q -c q
+vim -c GoUpdateBinaries -c q
 
 touch $HOME/.vimfiles_installed
 
