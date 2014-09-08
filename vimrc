@@ -4,14 +4,6 @@ set nocompatible
 filetype off
 filetype plugin indent off
 
-" if exists("$GOROOT")
-"   let g:gofmt_command='goimports'
-"   let g:godef_split=0
-"   au FileType go au BufWritePre <buffer> Fmt
-"   " au BufWritePost *.go silent! !ctags -R &
-"   set rtp+=$GOROOT/misc/vim/
-" endif
-
 " All plugin/bundle management is separate
 if filereadable(expand('~/.vimrc.bundles'))
   source $HOME/.vimrc.bundles
@@ -524,9 +516,6 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
 
-" Go
-let g:go_snippet_engine = "neosnippet"
-
 " Gundo
 map <leader>gu :GundoToggle<CR>
 
@@ -556,7 +545,6 @@ if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
 " Neosnippet
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
