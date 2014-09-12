@@ -8,6 +8,7 @@ Bundle "gmarik/vundle"
 
 Bundle "mileszs/ack.vim"
 " Bundle "tsaleh/vim-align"
+Bundle "chase/vim-ansible-yaml"
 " Bundle "tclem/vim-arduino"
 " Bundle "jgdavey/vim-blockle"
 " Bundle "msanders/cocoa.vim"
