@@ -1,24 +1,46 @@
-" no vi compatibility
-set nocompatible
+call plug#begin()
 
-filetype off
-filetype plugin indent off
+Plug 'tpope/vim-sensible'
 
-" All plugin/bundle management is separate
-if filereadable(expand('~/.vimrc.bundles'))
-  source $HOME/.vimrc.bundles
-endif
+Plug 'chase/vim-ansible-yaml'
+Plug 'tpope/vim-commentary'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'd11wtq/ctrlp_bdelete.vim'
+Plug 'endel/ctrlp-filetype.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'aclindsa/detectindent'
+Plug 'sjl/gundo.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'IndexedSearch'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'tpope/vim-markdown'
+Plug 'tomasr/molokai'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'tpope/vim-repeat'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
+Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
+Plug 'godlygeek/tabular'
+Plug 'majutsushi/tagbar'
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
+Plug 'tpope/vim-vinegar'
+Plug 'NSinopoli/yaml-vim'
 
-" Syntax highlighting
-syntax on
+call plug#end()
 
-" load filetype plugins/indent settings
-filetype plugin indent on
-
-" Show cursor position
-set ruler
-" Show line and column numbers
 set number
+
 " Vertical column
 if exists("&colorcolumn")
   set colorcolumn=80
@@ -33,12 +55,7 @@ set noerrorbells
 set t_vb=
 " Symbols when viewing invisibles
 set lcs=nbsp:•,tab:\▸\ ,eol:¬,trail:~,extends:>,precedes:<
-" Always show status line
-set laststatus=2
 set cursorline
-" set autoread "Set to auto read when a file is changed from the outside
-"Set how many commands to retain in history
-set history=100
 " Show matching brackets.
 set showmatch
 " Bracket blinking length (tenths of a second)
@@ -48,7 +65,6 @@ set linebreak
 set wrap
 " Visually differentiate a wrapped line from others
 set showbreak=↪ " …
-set encoding=utf-8 " Necessary to show unicode glyphs
 
 " Wildmenu
 if has("wildmenu")
@@ -59,15 +75,11 @@ if has("wildmenu")
   set wildignore+=*.tar.gz,*.tar.bz2,*.zip
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
-  set wildignore+=.vagrant,env,.env,node_modules,.bundle,vendor
-  set wildignore+=log,tmp,classes,static_components,deploy,_site
+  set wildignore+=.vagrant/,env/,.env,node_modules/,.bundle/,vendor/
+  set wildignore+=log/,tmp/,classes/,static_components/,deploy/,_site/
 endif
 
 set iskeyword+=_,$,@,%,#,-
-" Do not redraw while running macros (faster)
-" set lazyredraw
-" Display incomplete commands
-set showcmd
 " Show which mode you're in
 set showmode
 " multiple buffers
@@ -80,22 +92,11 @@ set magic
 " Use the OS X clipboard
 set clipboard=unnamed
 
-" Add buffer to cursor while scrolling
-set scrolloff=3
-set sidescroll=1
-set sidescrolloff=3
-
 " Try not letting the cursor blink
 set guicursor+=a:blinkon0
 
 " No Ex Mode
 map Q gq
-
-" Disable arrow keys
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
 
 noremap <F1> <ESC>
 
@@ -105,25 +106,6 @@ cnoremap <C-b>  <Left>
 cnoremap <C-f>  <Right>
 cnoremap <C-d>  <Delete>
 cnoremap <C-g>  <C-c>
-
-"" Folds
-" don't fold by default
-set nofoldenable
-" indent-sensitive folding
-" set foldmethod=syntax
-" Level of indentation
-" set foldleve=1
-" deepest fold level
-" set foldnestmax=2
-" Don't auto fold when a buffer is opened
-" set foldlevelstart=99
-" Show fold level in the column
-" set foldcolumn=2
-
-" save folds on exit
-" au BufWinLeave *.* mkview
-" automatically load folds silently
-" au BufWinEnter *.* silent loadview
 
 augroup restorecursor
   autocmd!
@@ -172,22 +154,14 @@ set noswapfile
 " Use 2 spaces for tabs
 set tabstop=4
 set softtabstop=4
-" Automatic indenting
-set smarttab
 " sets spaces used for indention
 set shiftwidth=4
-" continue indention from previous line
-set autoindent
 " tab key inserts spaces instead of tabs
 set expandtab
-" indent,eol,start
-set backspace=2
 
 "" Search
 " Highlighted search
 set hlsearch
-" Highlight search string as you type
-set incsearch
 " allow backspace and cursor keys to cross line boundaries
 set whichwrap+=<,>,h,l
 " case-insensitive
@@ -236,10 +210,6 @@ map <leader>w :w<CR>
 map <leader>v :vsplit ~/.vimrc<CR>
 " Fast reloading of the .vimrc
 map <silent> <leader>V :source $MYVIMRC<CR>:noh<CR>:filetype detect<CR>:echo 'vimrc reloaded'<CR>
-" When vimrc is edited, reload it
-" if has("autocmd")
-"   autocmd bufwritepost vimrc source $MYVIMRC
-" endif
 
 " Write all buffers when losing focus
 " au FocusLost * :wa
@@ -322,39 +292,24 @@ nnoremap <silent> <Leader>Q <C-w>c
 
 " close buffer
 nmap <leader>d :bd<CR>
+" close all buffers
+nmap <leader>D :bufdo bd<CR>
 
 " write as sudo
 ca w!! w !sudo tee > /dev/null %
 " command! W w !sudo tee > /dev/null %
-
-" close all buffers
-nmap <leader>D :bufdo bd<CR>
 
 " Switch between last two buffers
 nnoremap <leader><leader> <c-^>
 
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
-    set norelativenumber
+    set number norelativenumber
   else
-    set relativenumber
-    set nonumber
+    set relativenumber nonumber
   endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
-
-" nmap <F5> :<C-U>silent make %:r<CR>:redraw!<CR>:!./%:r<CR>
-
-" EXTERNAL COPY / PASTE
-" Press F2 before and after pasting from an external Window, not required for
-" MacVim
-set pastetoggle=<F2>
-map <D-v> "+gP<CR>
-vmap <D-c> "+y
-
-" Git blame
-vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
 " ctags
 set tags=.tags;$HOME/.tags
@@ -372,17 +327,11 @@ set dictionary+=/usr/share/dict/words
 " Toggle Fullscreen
 nmap <leader>f :set invfu<CR><c-w>=
 
-" Enable compiler support for ruby
-compiler ruby
-
 " Easily find a word
 " map ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " Remove trailing whitespace
 map <silent> <leader>rw :%s/\s\+$//<CR>:let @/=''<CR>:exe ":echo 'whitespace removed'"<CR>
-
-" Run Jasmine specs
-map <leader>js :!jasmine-node spec --noColor<CR>
 
 " http://vimcasts.org/episodes/bubbling-text/
 " Bubble single lines
@@ -426,31 +375,6 @@ nnoremap va/ F/v,
 " :command! PromoteToLet :call PromoteToLet()
 " :map <leader>p :PromoteToLet<cr>
 
-" Center screen
-" https://gist.github.com/1552327
-let g:centerinscreen_active = 0
-function! ToggleCenterInScreen(desired_width)
-  if g:centerinscreen_active == 0
-    let l:window_width = winwidth(winnr())
-    let l:sidepanel_width = (l:window_width - a:desired_width) / 2
-
-    exec("silent leftabove " . l:sidepanel_width . "vsplit new")
-    wincmd l
-    exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
-    wincmd h
-    let g:centerinscreen_active = 1
-  else
-    wincmd h
-    close
-    wincmd l
-    close
-    
-    let g:centerinscreen_active = 0
-  endif
-endfunction
-
-nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
-
 " Three-finger swipe to switch buffers
 if has("gui_macvim")
   map <SwipeLeft> :bprev<CR>
@@ -466,12 +390,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" ============== Plugin Settings ===============
-
-" Vundle
-" map <leader>vi :BundleInstall<CR>
-" map <leader>vc :BundleClean<CR>
-" map <leader>vd :BundleUpdate<CR>
+" {{{ ============== Plugin Settings ===============
 
 " Ack
 map <leader>A :Ack<space>
@@ -511,16 +430,11 @@ augroup fugitivefix
   autocmd BufReadPost fugitive:// set bufhidden=delete
 augroup END
 
-" Gist
-let g:gist_clip_command = 'pbcopy'
-let g:gist_open_browser_after_post = 1
-let g:gist_post_private = 1
+" Go
+let g:go_fmt_command = "goimports"
 
 " Gundo
 map <leader>gu :GundoToggle<CR>
-
-" Indent guides
-let g:indent_guides_start_level = 2
 
 " Jinja
 augroup jinja
@@ -537,7 +451,7 @@ augroup END
 " NeoComplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 50000
+let g:neocomplete#sources#buffer#cache_limit_size = 5000
 let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 2
@@ -554,48 +468,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
-" NERD Commenter
-let g:NERDSpaceDelims=1
-
 " Powerline
-" let g:Powerline_symbols = "fancy"
-
-" Pygments
-" let g:rtfp_theme = 'emacs'
-" let g:rtfp_font = 'Monaco'
-
-" Startify
-let g:startify_session_autoload = 1
-let g:startify_bookmarks = [
-  \ '~/workspace/puppet',
-  \ '~/workspace/kiip',
-  \ '~/workspace/launchy',
-  \ '~/workspace/vimfiles',
-  \ ]
-
-let g:startify_custom_header = [
-  \ '',
-  \ '                                _________  __  __',
-  \ '            __                 /\_____   \/\ \/\ `\',
-  \ '   __   __ /\_\    ___ ___     \/____/   /\ \ \ \  \',
-  \ '  /\ \ /\ \\/\ \ /` __` __`\        /   /  \ \ \_\  \__',
-  \ '  \ \ \_/ / \ \ \/\ \/\ \/\ \      /   / __ \ \___   __\',
-  \ '   \ \___/   \ \_\ \_\ \_\ \_\    /\__/ /\_\ \/___/\_\_/',
-  \ '    \/__/     \/_/\/_/\/_/\/_/    \/_/  \/_/      \/_/',
-  \ '',
-  \ '  ======================================================',
-  \ '',
-  \ ]
+let g:Powerline_symbols = "fancy"
 
 " Syntastic
-let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-double_quoted_strings-check --no-variable_scope-check --no-class_parameter_defaults'
 let g:syntastic_python_checkers = ["pyflakes", "pep8"]
 let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391 --max-line-length=1000'
-let g:syntastic_mode_map = {
-  \ 'mode': 'active',
-  \ 'active_filetypes': [],
-  \ 'passive_filetypes': []
-  \ }
+let g:syntastic_go_checkers = ["go", "gofmt", "golint", "govet"]
 
 " Tabular
 if exists(":Tabularize")
@@ -612,48 +491,6 @@ if exists(":Tabularize")
   nmap <Leader>t\| :Tabularize /\|<CR>
   vmap <Leader>t\| :Tabularize /\|<CR> vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
-
-" Tagbar
-" nmap <Leader>tb :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-let g:tagbar_type_go = {
-  \ 'ctagstype' : 'go',
-  \ 'kinds'     : [
-      \ 'p:package',
-      \ 'i:imports:1',
-      \ 'c:constants',
-      \ 'v:variables',
-      \ 't:types',
-      \ 'n:interfaces',
-      \ 'w:fields',
-      \ 'e:embedded',
-      \ 'm:methods',
-      \ 'r:constructor',
-      \ 'f:functions'
-  \ ],
-  \ 'sro' : '.',
-  \ 'kind2scope' : {
-      \ 't' : 'ctype',
-      \ 'n' : 'ntype'
-  \ },
-  \ 'scope2kind' : {
-      \ 'ctype' : 't',
-      \ 'ntype' : 'n'
-  \ },
-  \ 'ctagsbin'  : 'gotags',
-  \ 'ctagsargs' : '-sort -silent'
-\ }
-
-" TComment
-noremap <D-/> :TComment<CR>
-
-" UltiSnips
-" let g:UltiSnips = {}
-" let g:UltiSnips.ExpandTrigger="<c-j>"
-" let g:UltiSnips.ExpandTrigger="<tab>"
-" let g:UltiSnips.JumpForwardTrigger="<tab>"
-" let g:UltiSnips.JumpBackwardTrigger="<s-tab>"
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
   set t_Co=256

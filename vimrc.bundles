@@ -116,7 +116,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "tpope/vim-surround"
 Bundle "scrooloose/syntastic"
 " Just to fix appengine imports with goimports
-Bundle "roktas/syntastic-more"
+" Bundle "roktas/syntastic-more"
 Bundle "godlygeek/tabular"
 Bundle "majutsushi/tagbar"
 Bundle "tomtom/tcomment_vim"

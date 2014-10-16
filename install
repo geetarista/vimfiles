@@ -5,17 +5,6 @@ set -e
 # This installation is destructive, as it removes exisitng files/directories.
 # Use at your own risk.
 
-# install vundle
-echo "Installing vundle..."
-  if [ -d "vim/bundle/vundle" ]; then
-    cd "vim/bundle/vundle"
-    git pull
-    cd "../../.."
-  else
-    git clone http://github.com/gmarik/vundle.git vim/bundle/vundle
-  fi
-echo "Done installing vundle."
-
 # Symlink all of the files in the repo to your home directory.
 for name in *; do
   if [ ! $name == "README.md" -a ! $name == "LICENSE" -a ! $name == "install" ]; then
@@ -34,7 +23,7 @@ for name in *; do
   fi
 done
 
-vim -c BundleInstall! -c BundleClean! -c q -c q
+vim -c PlugInstall! -c PlugClean! -c q -c q
 vim -c GoUpdateBinaries -c q
 
 touch $HOME/.vimfiles_installed

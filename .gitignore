@@ -9,5 +9,6 @@ tags
 *.un~
 vim/bundle/
 vim/cache/
+vim/plugged/
 vim/undo/
 .undodir/
