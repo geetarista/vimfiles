@@ -2,6 +2,7 @@ call plug#begin()
 
 Plug 'tpope/vim-sensible'
 
+Plug 'bling/vim-airline'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -17,6 +18,7 @@ Plug 'sjl/gundo.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'IndexedSearch'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'nanotech/jellybeans.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tpope/vim-markdown'
@@ -25,15 +27,19 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
-Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'tpope/vim-repeat'
 Plug 'vim-ruby/vim-ruby'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
-Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
+" Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'Zuckonit/vim-airline-tomato'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
+" Plug 'tpope/vim-unimpaired'
+Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'NSinopoli/yaml-vim'
 
@@ -393,10 +399,13 @@ endfunc
 " {{{ ============== Plugin Settings ===============
 
 " Ack
-map <leader>A :Ack<space>
-map <leader>a :Ack <C-r><C-w>
-map <D-F> :args<space>`ag -l '<C-r><C-w>' .`
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" map <leader>A :Ack<space>
+" map <leader>a :Ack <C-r><C-w>
+" map <D-F> :args<space>`ag -l '<C-r><C-w>' .`
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Airline
+let g:airline_powerline_fonts = 1
 
 " Ctrlp
 let g:ctrlp_max_files = 10000
@@ -432,6 +441,11 @@ augroup END
 
 " Go
 let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_snippet_engine = "neosnippet"
 
 " Gundo
 map <leader>gu :GundoToggle<CR>
@@ -461,12 +475,30 @@ endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Neosnippet
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Platinum searcher
+nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+if executable('pt')
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_encoding = 'utf-8'
+endif
 
 " Powerline
 let g:Powerline_symbols = "fancy"
@@ -475,6 +507,12 @@ let g:Powerline_symbols = "fancy"
 let g:syntastic_python_checkers = ["pyflakes", "pep8"]
 let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391 --max-line-length=1000'
 let g:syntastic_go_checkers = ["go", "gofmt", "golint", "govet"]
+
+" Tagbar
+nmap <leader>t :TagbarToggle<CR>
+
+" Tomato
+let g:tomato#show_clock = 0
 
 " Tabular
 if exists(":Tabularize")
@@ -491,6 +529,9 @@ if exists(":Tabularize")
   nmap <Leader>t\| :Tabularize /\|<CR>
   vmap <Leader>t\| :Tabularize /\|<CR> vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+" YAML
+au BufNewFile,BufRead *.yaml,*.yml setf yaml
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
   set t_Co=256
