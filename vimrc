@@ -503,6 +503,11 @@ endif
 " Powerline
 let g:Powerline_symbols = "fancy"
 
+" Python
+autocmd FileType python set shiftwidth=4
+autocmd FileType python set tabstop=4
+autocmd FileType python set softtabstop=4
+
 " Syntastic
 let g:syntastic_python_checkers = ["pyflakes", "pep8"]
 let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391 --max-line-length=1000'
