@@ -24,7 +24,7 @@ for name in *; do
 done
 
 vim -c PlugInstall! -c PlugClean! -c q -c q
-vim -c GoUpdateBinaries -c q
+vim -c GoInstallBinaries -c q
 
 touch $HOME/.vimfiles_installed
 
