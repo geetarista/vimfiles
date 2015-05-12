@@ -30,6 +30,7 @@ Plug 'honza/vim-snippets'
 " Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'tpope/vim-repeat'
 Plug 'vim-ruby/vim-ruby'
+Plug 'mhinz/vim-sayonara'
 Plug 'justinmk/vim-sneak'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
