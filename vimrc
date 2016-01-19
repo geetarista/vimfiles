@@ -399,6 +399,13 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" {{{ ============== Macros ===============
+" http://vim.wikia.com/wiki/Macros
+"
+" let @q = ''
+"
+" }}}
+
 " {{{ ============== Plugin Settings ===============
 
 " Ack
