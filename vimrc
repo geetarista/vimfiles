@@ -206,6 +206,9 @@ vmap <C-d> y'>p
 " Easier command mode
 nnoremap ; :
 
+" Run current file
+nnoremap <F5> :!%:p<CR>
+
 " Command history
 cnoremap <c-k> <up>
 cnoremap <c-j> <down>
@@ -403,9 +406,8 @@ endfunc
 
 " {{{ ============== Macros ===============
 " http://vim.wikia.com/wiki/Macros
-"
-" let @q = ''
-"
+    "
+let @q = 'i"{{ a }}"F"'
 " }}}
 
 " {{{ ============== Plugin Settings ===============
@@ -525,7 +527,7 @@ autocmd FileType python set softtabstop=4
 
 " Syntastic
 let g:syntastic_python_checkers = ["flake8"]
-let g:syntastic_python_pep8_args='--ignore=E221,E501,E502,W391 --max-line-length=1000'
+let g:syntastic_python_flake8_args='--ignore=E221,E501,E502,W391 --max-line-length=1000'
 let g:syntastic_go_checkers = ["go", "gofmt", "golint", "govet"]
 
 " Tagbar
