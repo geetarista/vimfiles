@@ -24,6 +24,7 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tpope/vim-markdown'
 Plug 'tomasr/molokai'
+Plug 'scrooloose/nerdtree'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -501,6 +502,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" Nerdtree
+map <leader>n :NERDTreeToggle<CR>
 
 " Platinum searcher
 nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
