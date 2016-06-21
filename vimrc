@@ -2,7 +2,7 @@ call plug#begin()
 
 Plug 'tpope/vim-sensible'
 
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -35,13 +35,14 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'mhinz/vim-sayonara'
 Plug 'derekwyatt/vim-scala'
 Plug 'justinmk/vim-sneak'
+Plug 'sourcegraph/sourcegraph-vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 " Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
-Plug 'Zuckonit/vim-airline-tomato'
+" Plug 'Zuckonit/vim-airline-tomato'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
 " Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/unite.vim'
@@ -128,6 +129,51 @@ inoremap <c-k> <esc>O
 inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-j> <esc>o
+
+function! WindowNumber()
+  return tabpagewinnr(tabpagenr())
+endfunction
+function! TrailingSpaceWarning()
+  if !exists("b:statline_trailing_space_warning")
+    let lineno = search('\s$', 'nw')
+    if lineno != 0
+      let b:statline_trailing_space_warning = '[trailing:'.lineno.']'
+    else
+      let b:statline_trailing_space_warning = ''
+    endif
+  endif
+  return b:statline_trailing_space_warning
+endfunction
+
+" recalculate when idle, and after saving
+augroup statline_trail
+  autocmd!
+  autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
+augroup END
+
+set statusline=
+set statusline+=%6*%m%r%*                          " modified, readonly
+set statusline+=\
+set statusline+=%5*%{expand('%:h')}/               " relative path to file's directory
+set statusline+=%1*%t%*                            " file name
+set statusline+=\
+set statusline+=\
+set statusline+=%<                                 " truncate here if needed
+set statusline+=%5*%L\ lines%*                     " number of lines
+set statusline+=\
+set statusline+=\
+set statusline+=%3*%{TrailingSpaceWarning()}%*     " trailing whitespace
+
+set statusline+=%=                                 " switch to RHS
+
+set statusline+=%5*col:%-3.c%*                      " column
+set statusline+=\
+set statusline+=\
+set statusline+=%2*buf:%-3n%*                      " buffer number
+set statusline+=\
+set statusline+=\
+set statusline+=%2*win:%-3.3{WindowNumber()}%*     " window number
+
 
 " Make and restore sessions
 " set sessionoptions=blank,buffers,curdir,folds,tabpages
@@ -244,12 +290,24 @@ nmap > >>
 nmap < <<
 
 " properly move across lines in wrap mode
-nnoremap j gj
-nnoremap k gk
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Yank and keep position in visual mode
+vnoremap y myy`y
+vnoremap Y myY`y
 
 "" Splits
 " Auto resize splits
 autocmd VimResized * wincmd =
+
+" Use | and _ to split windows (while preserving original behaviour of [count]bar and [count]_).
+nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
+nnoremap <expr><silent> -     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
+
+" Use tab and shift-tab to cycle through windows.
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
 
 " Window
 " nmap <leader>sw<left>  :topleft  vnew<CR>
