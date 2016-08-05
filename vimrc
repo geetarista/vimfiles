@@ -289,6 +289,9 @@ map <Leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 nmap > >>
 nmap < <<
 
+" Select last edited text quickly
+nmap vp `[v`]
+
 " properly move across lines in wrap mode
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
