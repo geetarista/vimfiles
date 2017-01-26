@@ -5,10 +5,12 @@ Plug 'tpope/vim-sensible'
 " Plug 'bling/vim-airline'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tpope/vim-commentary'
+" Plug 'vim-scripts/csv.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'endel/ctrlp-filetype.vim'
 Plug 'Raimondi/delimitMate'
+Plug 'junegunn/vim-easy-align'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
@@ -40,11 +42,11 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 " Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 " Plug 'Zuckonit/vim-airline-tomato'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
-" Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'NSinopoli/yaml-vim'
@@ -346,9 +348,10 @@ vmap <D-]> >>
 imap <D-]> <C-O>>
 
 " bind command-[ to shift left
-nmap <D-[> <<
-vmap <D-[> <<
-imap <D-[> <C-O><<
+" XXX: not using due to incompatibility with unimpaired.vim.
+" nmap <D-[> <<
+" vmap <D-[> <<
+" imap <D-[> <C-O><<
 
 nmap <leader>x :!
 
@@ -499,6 +502,13 @@ augroup detectindent
   autocmd!
   autocmd BufReadPost * :DetectIndent
 augroup END
+
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
