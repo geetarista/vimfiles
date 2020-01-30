@@ -10,16 +10,21 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'endel/ctrlp-filetype.vim'
 Plug 'Raimondi/delimitMate'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'bogado/file-line'
+" https://github.com/junegunn/fzf.vim
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'aclindsa/detectindent'
 Plug 'sjl/gundo.vim'
+Plug 'fatih/vim-hclfmt'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'IndexedSearch'
+" Plug 'IndexedSearch'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'nanotech/jellybeans.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -31,6 +36,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+Plug 'arcticicestudio/nord-vim'
 " Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'tpope/vim-repeat'
 Plug 'vim-ruby/vim-ruby'
@@ -40,16 +46,18 @@ Plug 'justinmk/vim-sneak'
 " Plug 'sourcegraph/sourcegraph-vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/syntastic'
-" Plug 'roktas/syntastic-more' " Just to fix appengine imports with goimports
+Plug 'vim-syntastic/syntastic'
 " Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'hashivim/vim-terraform'
+" Plug 'juliosueiras/vim-terraform-completion'
 " Plug 'Zuckonit/vim-airline-tomato'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/' }
 Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-vinegar'
-Plug 'NSinopoli/yaml-vim'
+" Repo doesn't exist
+" Plug 'NSinopoli/yaml-vim'
 
 call plug#end()
 
@@ -89,8 +97,8 @@ if has("wildmenu")
   set wildignore+=*.tar.gz,*.tar.bz2,*.zip
   set wildignore+=.DS_Store,.git,.hg,.svn
   set wildignore+=*~,*.swp,*.swo,*.tmp,*.un~,*.log
-  set wildignore+=.vagrant/,env/,.env,node_modules/,.bundle/,vendor/
-  set wildignore+=log/,tmp/,classes/,static_components/,deploy/,_site/
+  set wildignore+=.vagrant/,node_modules/,.bundle/,vendor/
+  set wildignore+=log/,tmp/,classes/,static_components/,_site/
 endif
 
 set iskeyword+=_,$,@,%,#,-
@@ -260,6 +268,7 @@ nnoremap <F5> :!%:p<CR>
 " Command history
 cnoremap <c-k> <up>
 cnoremap <c-j> <down>
+set history=10000
 
 " Quicker q
 map <leader>q :q<CR>
@@ -398,6 +407,7 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "" Spelling/dictionary
 " Toggle spell checking
 nmap <silent> <leader>sp :set spell!<CR>
+set nospell
 set dictionary+=/usr/share/dict/words
 
 " Enter fullscreen on startup
@@ -468,6 +478,31 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+function! Redir(cmd)
+	for win in range(1, winnr('$'))
+		if getwinvar(win, 'scratch')
+			execute win . 'windo close'
+		endif
+	endfor
+	if a:cmd =~ '^!'
+		let output = system(matchstr(a:cmd, '^!\zs.*'))
+	else
+		redir => output
+		execute a:cmd
+		redir END
+	endif
+	vnew
+	let w:scratch = 1
+	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+	call setline(1, split(output, "\n"))
+endfunction
+
+command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
+
+" Usage:
+" 	:Redir hi ............. show the full output of command ':hi' in a scratch window
+" 	:Redir !ls -al ........ show the full output of command ':!ls -al' in a scratch window
+
 " {{{ ============== Macros ===============
 " http://vim.wikia.com/wiki/Macros
     "
@@ -481,15 +516,28 @@ let @q = 'i"{{ a }}"F"'
 " map <leader>a :Ack <C-r><C-w>
 " map <D-F> :args<space>`ag -l '<C-r><C-w>' .`
 " let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'rg --vimgrep --no-heading'
 
 " Airline
 let g:airline_powerline_fonts = 1
 
 " Ctrlp
-let g:ctrlp_max_files = 10000
+
+let g:ctrlp_max_files = 0  " 10000
 map <leader>b :CtrlPBuffer<CR>
 map <leader>l :CtrlPLine<CR>
-let g:ctrlp_clear_cache_on_exit = 0
+
+" ctrlp cache
+" rg is fast enough to not need caching
+let g:ctrlp_use_caching = 0
+" let g:ctrlp_clear_cache_on_exit = 0
+
+" ctrlp ripgrep (rg)
+if executable('rg')
+  set grepprg=rg\ --vimgrep " --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 " ctrlp_bdelete
 call ctrlp_bdelete#init()
@@ -524,6 +572,20 @@ augroup fugitivefix
   autocmd BufReadPost fugitive:// set bufhidden=delete
 augroup END
 
+" FZF
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
 " Go
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
@@ -548,12 +610,12 @@ augroup markdown
 augroup END
 
 " NeoComplete
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 0
 let g:neocomplete#auto_completion_start_length = 1
 let g:neocomplete#sources#buffer#cache_limit_size = 5000
 let g:neocomplete#data_directory = $HOME.'/.vim/cache/noecompl'
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
@@ -630,7 +692,7 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
   set t_Co=256
 endif
 set background=dark
-" Silently fail on first install
-silent! colorscheme lucius
+" Silently fail on first install (install.sh)
+silent! colorscheme nord
 " let g:molokai_original = 0
 " highlight ColorColumn guibg=#3D4646 ctermbg=238
